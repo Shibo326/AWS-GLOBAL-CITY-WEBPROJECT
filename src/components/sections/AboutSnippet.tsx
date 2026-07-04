@@ -61,7 +61,7 @@ export default function AboutSnippet() {
             <img
               src="/images/rory-waving.png"
               alt="Rory the Cloud Pilot mascot"
-              className="w-[180px] h-[240px] md:w-[220px] md:h-[280px] object-contain"
+              className="w-[180px] h-[240px] md:w-[220px] md:h-[280px] object-contain animate-[float_4s_ease-in-out_infinite]"
               draggable={false}
             />
           </div>

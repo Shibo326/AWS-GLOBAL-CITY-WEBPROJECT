@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useIsMobile } from '@/hooks/useMediaQuery';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 /**
- * TigerMascot — Placeholder tiger mascot with mouse-tracking rotation.
+ * TigerMascot — Rory waving video in the hero with mouse-tracking rotation.
+ * Uses the looping MP4 video on desktop, falls back to static PNG on mobile.
  * Follows cursor with +/-8 degree rotation using lerp (0.08) via RAF.
  * Disabled on mobile for performance.
  */
@@ -14,6 +16,7 @@ export default function TigerMascot() {
   const targetRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
   const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
 
   const LERP = 0.08;
   const MAX_ROTATION = 8;
@@ -26,11 +29,9 @@ export default function TigerMascot() {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 
-      // Normalize position to -1...1 range relative to element center
       const normalizedX = (e.clientX - centerX) / (window.innerWidth / 2);
       const normalizedY = (e.clientY - centerY) / (window.innerHeight / 2);
 
-      // Clamp to -1...1
       targetRef.current = {
         x: Math.max(-1, Math.min(1, normalizedY)) * MAX_ROTATION,
         y: Math.max(-1, Math.min(1, normalizedX)) * MAX_ROTATION,
@@ -40,7 +41,6 @@ export default function TigerMascot() {
   );
 
   const animate = useCallback(() => {
-    // Lerp toward target
     rotateRef.current.x +=
       (targetRef.current.x - rotateRef.current.x) * LERP;
     rotateRef.current.y +=
@@ -69,18 +69,35 @@ export default function TigerMascot() {
   }, [isMobile, handleMouseMove, animate]);
 
   return (
-    <div
-      ref={containerRef}
-      data-cursor="tiger"
-      className="gpu-accelerated"
-      aria-hidden="true"
-    >
-      <img
-        src="/images/rory-waving.png"
-        alt=""
-        className="w-[220px] h-[270px] md:w-[300px] md:h-[370px] object-contain drop-shadow-[0_0_30px_rgba(77,163,255,0.12)] select-none pointer-events-none"
-        draggable={false}
-      />
+    <div className="flex items-center justify-center w-full h-full">
+      <div
+        ref={containerRef}
+        data-cursor="tiger"
+        className="gpu-accelerated"
+        aria-hidden="true"
+      >
+        {/* Video version on desktop — looping animated Rory waving */}
+        {!isMobile && !prefersReducedMotion ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-[280px] h-[340px] md:w-[380px] md:h-[460px] object-contain drop-shadow-[0_0_40px_rgba(77,163,255,0.15)] select-none pointer-events-none"
+            poster="/images/rory-waving.png"
+          >
+            <source src="/videos/rory-waving.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          /* Static PNG fallback on mobile or reduced motion */
+          <img
+            src="/images/rory-waving.png"
+            alt=""
+            className="w-[220px] h-[270px] object-contain drop-shadow-[0_0_30px_rgba(77,163,255,0.12)] select-none pointer-events-none"
+            draggable={false}
+          />
+        )}
+      </div>
     </div>
   );
 }
