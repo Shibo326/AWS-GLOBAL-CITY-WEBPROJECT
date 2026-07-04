@@ -1,0 +1,201 @@
+/* Advanced Keyframe Animations — GPU-accelerated decorative effects */
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+/* Scan-line sweep — 1px bright line moves top to bottom */
+@keyframes scan-line-sweep {
+  0% {
+    transform: translateY(0%) translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%) translateZ(0);
+    opacity: 0.4;
+  }
+}
+
+/* Typewriter caret — blinking cursor */
+@keyframes typewriter-caret {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Border draw — conic-gradient rotation for animated card borders */
+@keyframes border-draw {
+  0% {
+    --border-angle: 0deg;
+  }
+  100% {
+    --border-angle: 360deg;
+  }
+}
+
+/* Star twinkle — randomized opacity pulsing */
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) translateZ(0);
+  }
+}
+
+/* Float drift — slow horizontal translation for background ellipses */
+@keyframes float-drift {
+  0% {
+    transform: translateX(0) translateZ(0);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateZ(0);
+    opacity: 0.6;
+  }
+}
+
+/* Amber pulse — for pinned signal dots */
+@keyframes amber-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Gradient border — rotating conic-gradient angle */
+@keyframes gradient-border {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Scan-line effect — overlay via pseudo-element */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(77, 163, 255, 0.6);
+  box-shadow: 0 0 8px rgba(77, 163, 255, 0.4);
+  animation: scan-line-sweep 3s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Typewriter cursor — inline blinking block */
+.typewriter-cursor::after {
+  content: "▌";
+  display: inline-block;
+  color: #4DA3FF;
+  animation: typewriter-caret 0.7s infinite;
+  will-change: opacity;
+}
+
+/* Border draw animation — tiger card animated border using mask technique */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.border-draw-animation {
+  --border-angle: 0deg;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(var(--card, #161B24), var(--card, #161B24)) padding-box,
+    conic-gradient(from var(--border-angle), #4DA3FF, #FF9900, #4DA3FF) border-box;
+  animation: border-draw 4s linear infinite;
+  will-change: --border-angle;
+}
+
+/* Star twinkle — applied to individual star elements */
+.star-twinkle {
+  animation: star-twinkle 3s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.star-twinkle:nth-child(2n) {
+  animation-duration: 4s;
+  animation-delay: 0.5s;
+}
+
+.star-twinkle:nth-child(3n) {
+  animation-duration: 5s;
+  animation-delay: 1.2s;
+}
+
+.star-twinkle:nth-child(5n) {
+  animation-duration: 2.5s;
+  animation-delay: 0.8s;
+}
+
+/* Float drift — for background gradient ellipses */
+.float-drift {
+  animation: float-drift 80s linear infinite;
+  will-change: transform;
+}
+
+.float-drift:nth-child(2n) {
+  animation-duration: 100s;
+  animation-delay: -20s;
+}
+
+.float-drift:nth-child(3n) {
+  animation-duration: 120s;
+  animation-delay: -40s;
+}
+
+/* Amber pulse — pinned signal indicator dots */
+.amber-pulse {
+  animation: amber-pulse 1.5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* ========================================
+   REDUCED MOTION — disable all decorative animations
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line::after,
+  .typewriter-cursor::after,
+  .border-draw-animation,
+  .star-twinkle,
+  .float-drift,
+  .amber-pulse {
+    animation: none !important;
+  }
+
+  .scan-line::after {
+    display: none;
+  }
+
+  .typewriter-cursor::after {
+    opacity: 1;
+  }
+}

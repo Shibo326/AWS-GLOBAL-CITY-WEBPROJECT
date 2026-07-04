@@ -1,0 +1,99 @@
+/* Custom Cursor Styles — Aviation Reticle System */
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #F5F0E8;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transition: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(245, 240, 232, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* CTA hover state — expanded amber ring */
+.cursor-ring--hover-cta {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 153, 0, 0.2);
+  border-color: #FF9900;
+}
+
+/* Tiger hover state — targeting reticle mode */
+.cursor-ring--hover-tiger {
+  width: 48px;
+  height: 48px;
+  border-color: #4DA3FF;
+  background: transparent;
+}
+
+.cursor-ring--hover-tiger::before,
+.cursor-ring--hover-tiger::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #4DA3FF;
+  pointer-events: none;
+}
+
+/* Horizontal crosshair line */
+.cursor-ring--hover-tiger::before {
+  width: 64px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+/* Vertical crosshair line */
+.cursor-ring--hover-tiger::after {
+  width: 1px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+}
+
+/* Hidden state */
+.cursor-dot--hidden {
+  opacity: 0;
+  transform: scale(0) translate3d(0, 0, 0);
+}
+
+/* Hide cursor elements on mobile/touch */
+@media (max-width: 767px) {
+  .custom-cursor,
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    transition: none;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}

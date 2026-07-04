@@ -3,25 +3,298 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color tokens */
+  --background: #0A0C10;
+  --surface: #111318;
+  --card: #161B24;
+  --primary-text: #F5F0E8;
+  --secondary-text: #8A9BB5;
+  --accent-orange: #FF9900;
+  --accent-blue: #4DA3FF;
+  --accent-warm: #8B5E3C;
+  --accent-warm-light: #C4956A;
+  --border: rgba(255, 255, 255, 0.06);
+  --glow: rgba(77, 163, 255, 0.12);
+
+  /* Font family variables (set by next/font/google in layout.tsx) */
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-accent: "Playfair Display", serif;
+  --font-label: "JetBrains Mono", monospace;
+
+  /* Spacing */
+  --section-padding: 5rem;
+  --container-max: 1280px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--background);
+    background: radial-gradient(ellipse at 50% 0%, #0D1117 0%, #0A0C10 50%, #080A0E 100%);
+    color: var(--primary-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--primary-text);
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  p {
+    color: var(--primary-text);
+    line-height: 1.75;
+  }
+
+  a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  a:hover {
+    color: var(--accent-orange);
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(77, 163, 255, 0.25);
+    color: var(--primary-text);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary-text);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+  }
+
+  /* Focus indicators for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Container utility */
+  .container-site {
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Section wrapper */
+  .section-padding {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+
+  /* Typography utility classes */
+  .text-hero {
+    font-family: var(--font-heading);
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .text-section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .text-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.12em;
+    color: var(--secondary-text);
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .text-mono {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+  }
+
+  .text-accent {
+    font-family: var(--font-accent);
+    font-style: italic;
+  }
+
+  /* Card base */
+  .card-base {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Glow border on hover */
+  .glow-border {
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .glow-border:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 16px var(--glow);
+  }
+
+  /* Button styles */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background-color: var(--accent-orange);
+    color: var(--background);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(255, 153, 0, 0.4), 0 0 48px rgba(255, 153, 0, 0.15);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    color: var(--primary-text);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+  }
+
+  /* Section divider — subtle gradient line between sections */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent-warm) 30%, var(--accent-blue) 70%, transparent 100%);
+    opacity: 0.3;
+    border: none;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* GPU-accelerated transform utilities */
+  .gpu-accelerated {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Pause all animations within a container (used by BackgroundEffects) */
+  .animations-paused,
+  .animations-paused * {
+    animation-play-state: paused !important;
+  }
+}
+
+/* ==============================================
+   Reduced motion — disable ALL decorative animations globally.
+   Preserves essential state-change transitions:
+   focus indicators, content visibility toggles, nav open/close.
+   ============================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Blanket kill on all decorative CSS animations */
+  .motion-safe,
+  .animate-glow-pulse,
+  .animate-blink-green,
+  .animate-status-pulse-blue,
+  .animate-status-pulse-orange,
+  .animate-scroll-bounce,
+  .animate-marquee,
+  .animate-marquee-mobile {
+    animation: none !important;
+  }
+
+  /* Disable smooth scroll (can be disorienting) */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Remove transition durations on decorative elements while keeping focus indicators */
+  *:not(:focus-visible) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  /* Keep focus indicators untouched */
+  :focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+    transition: outline-offset 0.1s ease !important;
   }
 }
