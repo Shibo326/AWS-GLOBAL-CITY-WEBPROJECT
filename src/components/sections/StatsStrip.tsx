@@ -11,16 +11,16 @@ import { stats } from '@/data/stats';
 export default function StatsStrip() {
   return (
     <section
-      className="relative bg-zone-cloud border-b border-border section-padding"
+      className="relative bg-[#FFFDE7] border-y-[3px] border-[#2D2D44] section-padding"
       aria-label="Club statistics"
     >
-      {/* Colorful top gradient border */}
+      {/* Colorful cartoon dashed top border */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
+        className="absolute top-2 left-[5%] right-[5%] h-[3px]"
         aria-hidden="true"
         style={{
-          background: 'linear-gradient(90deg, var(--accent-pink), var(--accent-orange), var(--accent-warm-light), var(--accent-green), var(--accent-blue))',
-          opacity: 0.6,
+          background: 'repeating-linear-gradient(90deg, var(--accent-pink) 0px, var(--accent-pink) 15px, transparent 15px, transparent 25px, var(--accent-orange) 25px, var(--accent-orange) 40px, transparent 40px, transparent 50px)',
+          opacity: 0.5,
         }}
       />
 
@@ -31,17 +31,17 @@ export default function StatsStrip() {
               key={stat.id}
               className={`flex flex-col items-center text-center ${
                 index < stats.length - 1
-                  ? 'lg:border-r lg:border-border/20'
+                  ? 'lg:border-r-[2px] lg:border-dashed lg:border-[#2D2D44]/20'
                   : ''
               }`}
             >
               <CountUp
                 target={stat.value}
                 suffix={stat.suffix ?? ''}
-                className="text-4xl md:text-5xl font-heading text-accent-orange tracking-hero"
+                className="text-4xl md:text-5xl font-heading text-accent-orange tracking-hero drop-shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"
               />
-              <span className="mt-3 font-mono text-xs uppercase tracking-label text-secondary-text inline-flex items-center gap-1.5">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-warm-light opacity-70" aria-hidden="true" />
+              <span className="mt-3 font-mono text-xs font-bold uppercase tracking-label text-[#2D2D44] inline-flex items-center gap-1.5 bg-[#FFF3E0] px-2 py-0.5 rounded-full border border-[#2D2D44]/20">
+                <span className="inline-block w-2 h-2 rounded-full bg-accent-warm-light border border-[#2D2D44]/30" aria-hidden="true" />
                 {stat.label}
               </span>
             </div>

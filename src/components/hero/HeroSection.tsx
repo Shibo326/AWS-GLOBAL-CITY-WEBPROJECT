@@ -35,7 +35,7 @@ export default function HeroSection() {
       className="relative h-screen w-full overflow-hidden"
       aria-label="Hero section"
       style={{
-        background: 'linear-gradient(180deg, #0369A1 0%, #38BDF8 30%, #7DD3FC 55%, #BAE6FD 75%, #E0F2FE 100%)',
+        background: 'linear-gradient(180deg, #1565C0 0%, #29B6F6 25%, #4FC3F7 50%, #81D4FA 75%, #B3E5FC 100%)',
       }}
     >
       {/* Sky atmosphere glow behind mascot */}
@@ -95,7 +95,8 @@ export default function HeroSection() {
               className="text-hero font-heading tracking-hero leading-none select-none"
               style={{
                 color: '#FFFFFF',
-                textShadow: '0 2px 20px rgba(12, 74, 110, 0.4), 0 4px 40px rgba(0, 0, 0, 0.15)',
+                textShadow: '4px 4px 0px rgba(0, 0, 0, 0.25), -2px -2px 0px rgba(255, 255, 255, 0.15)',
+                WebkitTextStroke: '2px rgba(0, 0, 0, 0.1)',
               }}
             >
               CLEARED FOR TAKEOFF
@@ -160,36 +161,36 @@ export default function HeroSection() {
 }
 
 /**
- * CloudShapes — Floating cloud shapes with natural morphology.
- * Uses irregular border-radius to create fluffy cloud silhouettes.
- * Clouds are wider than tall, with gentle drift animation.
+ * CloudShapes — Cartoon fluffy clouds with defined shapes.
+ * Solid white fill with visible soft outline — like illustrated storybook clouds.
+ * No blur — crisp cartoon shapes.
  */
 function CloudShapes() {
   const clouds = [
     {
-      top: '10%', left: '-5%', width: 320, height: 100,
+      top: '8%', left: '-3%', width: 280, height: 110,
       borderRadius: '60% 80% 50% 70% / 60% 40% 70% 50%',
-      opacity: 0.6, blur: 20,
+      opacity: 0.9,
     },
     {
-      top: '20%', left: '60%', width: 280, height: 90,
+      top: '18%', left: '62%', width: 240, height: 95,
       borderRadius: '50% 70% 60% 80% / 70% 50% 60% 40%',
-      opacity: 0.4, blur: 25,
+      opacity: 0.85,
     },
     {
-      top: '45%', left: '15%', width: 400, height: 120,
+      top: '42%', left: '10%', width: 320, height: 120,
       borderRadius: '70% 50% 80% 60% / 50% 70% 40% 60%',
-      opacity: 0.3, blur: 30,
+      opacity: 0.7,
     },
     {
-      top: '55%', left: '70%', width: 250, height: 80,
+      top: '52%', left: '68%', width: 200, height: 85,
       borderRadius: '60% 70% 50% 80% / 60% 50% 70% 40%',
-      opacity: 0.35, blur: 22,
+      opacity: 0.75,
     },
     {
-      top: '75%', left: '30%', width: 350, height: 110,
+      top: '72%', left: '25%', width: 300, height: 105,
       borderRadius: '80% 60% 70% 50% / 40% 60% 50% 70%',
-      opacity: 0.25, blur: 28,
+      opacity: 0.6,
     },
   ];
 
@@ -206,9 +207,9 @@ function CloudShapes() {
             height: cloud.height,
             borderRadius: cloud.borderRadius,
             opacity: cloud.opacity,
-            filter: `blur(${cloud.blur}px)`,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.6) 100%)',
-            boxShadow: '0 8px 32px rgba(148, 163, 184, 0.1)',
+            background: '#FFFFFF',
+            border: '2.5px solid rgba(100, 150, 200, 0.25)',
+            boxShadow: '3px 4px 0px rgba(100, 150, 200, 0.15), inset 0 -20px 40px rgba(200, 230, 255, 0.3)',
           }}
         />
       ))}

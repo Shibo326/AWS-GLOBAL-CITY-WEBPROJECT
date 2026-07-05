@@ -103,11 +103,11 @@ export function CrewCard({ officer, index = 0 }: CrewCardProps) {
       >
         {/* ===== FRONT FACE ===== */}
         <div
-          className="absolute inset-0 flex flex-col rounded-2xl overflow-hidden border border-white/60 bg-white/80 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+          className="absolute inset-0 flex flex-col rounded-[24px] overflow-hidden border-[3px] border-[#2D2D44] bg-white shadow-[4px_4px_0px_#2D2D44]"
           style={{ backfaceVisibility: 'hidden' }}
         >
           {/* Top rank stripe */}
-          <div className={`h-1.5 w-full bg-gradient-to-r ${accent.gradient}`} />
+          <div className={`h-2 w-full bg-gradient-to-r ${accent.gradient}`} />
 
           {/* Content */}
           <div className="flex-1 flex flex-col items-center justify-center px-5 py-6 gap-4">
@@ -157,16 +157,14 @@ export function CrewCard({ officer, index = 0 }: CrewCardProps) {
 
         {/* ===== BACK FACE ===== */}
         <div
-          className="absolute inset-0 flex flex-col rounded-2xl overflow-hidden border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+          className="absolute inset-0 flex flex-col rounded-[24px] overflow-hidden border-[3px] border-[#2D2D44] shadow-[4px_4px_0px_#2D2D44] bg-[#FFF8E1]"
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
-            background: `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)`,
-            backdropFilter: 'blur(12px)',
           }}
         >
           {/* Top stripe */}
-          <div className={`h-1.5 w-full bg-gradient-to-r ${accent.gradient}`} />
+          <div className={`h-2 w-full bg-gradient-to-r ${accent.gradient}`} />
 
           {/* Content */}
           <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 gap-4">

@@ -34,7 +34,7 @@ export default function Navigation() {
         aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'backdrop-blur-[20px] bg-white/85 border-b border-border shadow-sm'
+            ? 'bg-[#FFFDE7] border-b-[3px] border-[#2D2D44] shadow-[0_4px_0px_#2D2D44] rounded-b-[20px]'
             : 'bg-transparent'
         }`}
         style={!scrolled && isHome ? { background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 100%)' } : undefined}
@@ -50,7 +50,7 @@ export default function Navigation() {
               alt="AWS Cloud Club Global City Logo"
               width={48}
               height={48}
-              className="rounded-full transition-all duration-600 ease-in-out group-hover:rotate-[360deg] group-hover:shadow-[0_0_16px_rgba(255,153,0,0.4)]"
+              className="rounded-full border-[3px] border-[#2D2D44] shadow-[2px_2px_0px_#2D2D44] transition-all duration-600 ease-in-out group-hover:rotate-[360deg] group-hover:shadow-[3px_3px_0px_#C56200]"
               priority
             />
           </Link>
@@ -200,7 +200,7 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
         animate={{ x: '0%' }}
         exit={{ x: '100%' }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="absolute top-0 right-0 h-full w-[280px] bg-surface border-l border-border p-8 pt-24 flex flex-col gap-6"
+        className="absolute top-0 right-0 h-full w-[280px] bg-[#FFFDE7] border-l-[3px] border-[#2D2D44] p-8 pt-24 flex flex-col gap-6 shadow-[-4px_0_0px_#2D2D44]"
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"

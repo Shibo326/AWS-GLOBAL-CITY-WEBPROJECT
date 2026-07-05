@@ -14,11 +14,11 @@ interface PartnerLogoProps {
 export function PartnerLogo({ partner }: PartnerLogoProps) {
   const content = (
     <div
-      className="h-10 px-6 flex items-center rounded bg-card border border-border
+      className="h-11 px-6 flex items-center rounded-xl bg-card border-2 border-[#2D2D44] shadow-[2px_2px_0px_#2D2D44]
         grayscale transition-all duration-300 hover:grayscale-0
-        hover:border-accent-orange/30"
+        hover:border-accent-orange hover:shadow-[3px_3px_0px_#C56200] hover:-translate-y-0.5"
     >
-      <span className="font-mono text-xs text-secondary-text whitespace-nowrap transition-colors duration-300 hover:text-primary-text">
+      <span className="font-mono text-xs font-bold text-secondary-text whitespace-nowrap transition-colors duration-300 hover:text-primary-text">
         {partner.name}
       </span>
     </div>

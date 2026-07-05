@@ -38,11 +38,11 @@ const statusVariantMap: Record<MissionEvent['status'], 'upcoming' | 'active' | '
   COMPLETED: 'completed',
 };
 
-/** Status-based card accent colors */
+/** Status-based card accent colors — cartoon style */
 const statusAccentMap: Record<MissionEvent['status'], string> = {
-  UPCOMING: 'hover:border-sky-300 hover:shadow-[0_8px_30px_rgba(56,189,248,0.12)]',
-  ACTIVE: 'hover:border-orange-300 hover:shadow-[0_8px_30px_rgba(255,153,0,0.12)]',
-  COMPLETED: 'hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)]',
+  UPCOMING: 'hover:border-[#00B8D4] hover:shadow-[6px_6px_0px_#006064]',
+  ACTIVE: 'hover:border-[#FF8C00] hover:shadow-[6px_6px_0px_#C56200]',
+  COMPLETED: 'hover:border-[#00C853] hover:shadow-[6px_6px_0px_#1B5E20]',
 };
 
 /**
@@ -53,7 +53,7 @@ const statusAccentMap: Record<MissionEvent['status'], string> = {
 export function MissionCard({ event, index }: MissionCardProps) {
   return (
     <motion.article
-      className={`scan-line group relative flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 ${statusAccentMap[event.status]}`}
+      className={`group relative flex flex-col gap-3 rounded-[24px] border-[3px] border-[#2D2D44] bg-card p-6 shadow-[4px_4px_0px_#2D2D44] transition-all duration-300 hover:-translate-y-2 hover:-translate-x-1 ${statusAccentMap[event.status]}`}
       variants={cardRevealVariants}
       custom={index}
       {...cardMotion}
@@ -102,11 +102,11 @@ export function MissionCard({ event, index }: MissionCardProps) {
 
       {/* Tags */}
       {event.tags && event.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-border/50">
+        <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t-2 border-dashed border-[#2D2D44]/20">
           {event.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="inline-block rounded-full bg-accent-green/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-emerald-700"
+              className="inline-block rounded-full bg-[#E8F5E9] px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#2E7D32] border border-[#2E7D32]/30"
             >
               {tag}
             </span>

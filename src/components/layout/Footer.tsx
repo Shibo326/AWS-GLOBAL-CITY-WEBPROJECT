@@ -35,18 +35,23 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden border-t bg-zone-runway"
-      style={{
-        borderColor: "rgba(255, 255, 255, 0.1)",
-      }}
+      className="relative overflow-hidden bg-[#1A1A2E] border-t-[4px] border-[#FFD54F]"
     >
-      {/* Runway strip gradient at top */}
+      {/* Cartoon runway dashed lines */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
+        className="absolute top-6 left-[10%] right-[10%] h-[4px]"
         aria-hidden="true"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, #FF9900 20%, #FBBF24 50%, #FF9900 80%, transparent 100%)',
-          opacity: 0.9,
+          background: 'repeating-linear-gradient(90deg, #FFD54F 0px, #FFD54F 30px, transparent 30px, transparent 50px)',
+          opacity: 0.4,
+        }}
+      />
+      <div
+        className="absolute bottom-6 left-[15%] right-[15%] h-[4px]"
+        aria-hidden="true"
+        style={{
+          background: 'repeating-linear-gradient(90deg, #FFD54F 0px, #FFD54F 20px, transparent 20px, transparent 40px)',
+          opacity: 0.25,
         }}
       />
       {/* Tiger mascot watermark */}
@@ -69,10 +74,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Column 1: Club identity */}
           <div>
-            <h2 className="font-display text-lg font-semibold mb-2 text-white">
+            <h2 className="font-display text-lg font-bold mb-2 text-[#FFD54F]">
               AWS Cloud Club — Global City
             </h2>
-            <p className="text-sm leading-relaxed text-slate-400">
+            <p className="text-sm leading-relaxed text-slate-300 font-medium">
               A special-interest student organization empowering cloud builders
               at STI Academic Center, Bonifacio Global City.
             </p>
@@ -114,7 +119,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="p-2 rounded-md text-slate-400 transition-colors duration-300 hover:text-accent-orange"
+                  className="p-2 rounded-xl text-slate-300 border-2 border-slate-600 transition-all duration-300 hover:text-[#FFD54F] hover:border-[#FFD54F] hover:shadow-[2px_2px_0px_#FFD54F] hover:-translate-y-1"
                   style={{ minWidth: "44px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
                 >
                   <item.icon size={24} stroke={1.5} />
@@ -126,13 +131,13 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3"
+          className="mt-10 pt-6 border-t-2 border-dashed border-slate-600 flex flex-col md:flex-row items-center justify-between gap-3"
         >
-          <p className="font-mono text-xs text-slate-500">
+          <p className="font-mono text-xs text-slate-400 font-semibold">
             {currentYear} AWS Cloud Club — Global City. All rights reserved.
           </p>
-          <p className="font-mono text-xs text-accent-orange">
-            Built by Cloud Pilots. Powered by AWS.
+          <p className="font-mono text-xs text-[#FFD54F] font-bold">
+            ✈ Built by Cloud Pilots. Powered by AWS. ✈
           </p>
         </div>
       </div>

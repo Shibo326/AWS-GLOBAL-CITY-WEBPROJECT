@@ -30,12 +30,12 @@ export default function AboutSnippet() {
             }}
           />
           <div className="relative">
-            <h2 className="font-display font-semibold text-2xl md:text-3xl text-primary-text">
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-primary-text">
               A Different Kind of Cloud Club
             </h2>
-            {/* Colorful underline accent */}
+            {/* Cartoon hand-drawn underline */}
             <div
-              className="mt-2 h-[3px] w-[40%] rounded-full"
+              className="mt-2 h-[4px] w-[45%] rounded-full rotate-[-1deg]"
               aria-hidden="true"
               style={{
                 background: 'linear-gradient(90deg, var(--accent-orange), var(--accent-pink), var(--accent-purple))',
@@ -52,10 +52,10 @@ export default function AboutSnippet() {
           </p>
         </motion.div>
 
-        {/* Right column — tiger mascot card with animated border */}
+        {/* Right column — tiger mascot card with cartoon border */}
         <motion.div variants={fadeInUp} className="flex justify-center md:justify-end">
           <div
-            className="border-draw-animation bg-card rounded-2xl p-6 w-[250px] h-[300px] md:w-[300px] md:h-[360px] flex items-center justify-center shadow-lg border border-accent-orange/20"
+            className="bg-[#FFF8E1] rounded-[28px] p-6 w-[250px] h-[300px] md:w-[300px] md:h-[360px] flex items-center justify-center border-[3px] border-[#2D2D44] shadow-[5px_5px_0px_#2D2D44] rotate-[1deg] hover:rotate-[-1deg] hover:shadow-[7px_7px_0px_#C56200] transition-all duration-300"
             data-cursor="tiger"
           >
             <img
