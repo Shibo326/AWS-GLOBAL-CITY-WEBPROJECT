@@ -40,31 +40,31 @@ export default function EnlistSection() {
   return (
     <ScrollReveal>
       <section
-        className="relative section-padding bg-surface"
+        className="relative section-padding bg-zone-landing"
         aria-label="Enlist as a Cloud Pilot"
       >
-        {/* Warm gradient overlay at top */}
+        {/* Colorful gradient overlay at top */}
         <div
           className="absolute top-0 left-0 right-0 h-[200px] pointer-events-none"
           aria-hidden="true"
           style={{
-            background: 'linear-gradient(to bottom, rgba(139, 94, 60, 0.04) 0%, transparent 100%)',
+            background: 'linear-gradient(to bottom, rgba(34, 197, 94, 0.06) 0%, transparent 100%)',
           }}
         />
 
         <div className="container-site relative flex flex-col items-center text-center">
           {/* Top label */}
           <SectionLabel
-            text="RECRUITMENT HANGAR -- OPEN"
+            text="RECRUITMENT HANGAR — OPEN"
             dotColor="#22c55e"
             className="mb-6"
           />
 
-          {/* Decorative aviator wings */}
+          {/* Decorative colorful dots */}
           <div className="mb-4 flex items-center gap-3" aria-hidden="true">
-            <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-accent-warm-light opacity-60" />
-            <div className="w-2.5 h-2.5 rounded-full border border-accent-warm-light/60" />
-            <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-accent-warm-light opacity-60" />
+            <div className="h-[2px] w-10 bg-gradient-to-r from-transparent to-accent-pink opacity-70" />
+            <div className="w-2.5 h-2.5 rounded-full bg-accent-orange" />
+            <div className="h-[2px] w-10 bg-gradient-to-l from-transparent to-accent-blue opacity-70" />
           </div>
 
           {/* Stamp-in headline */}
@@ -72,7 +72,7 @@ export default function EnlistSection() {
             <h2
               className="font-heading text-hero uppercase tracking-hero mb-4"
               style={{
-                background: 'linear-gradient(180deg, #F5F0E8 20%, #C4956A 100%)',
+                background: 'linear-gradient(135deg, #FF9900 0%, #EC4899 50%, #A855F7 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -90,7 +90,7 @@ export default function EnlistSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
           >
-            Join the Cloud Pilots of STI Global City. No experience required --
+            Join the Cloud Pilots of STI Global City. No experience required —
             just the drive to build.
           </motion.p>
 

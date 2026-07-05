@@ -8,10 +8,7 @@ export const officers: Officer[] = [
     office: 'Executive Office',
     photo: '/images/officers/rhenmart-dela-cruz.webp',
     description: 'Leading the club as University Captain. Driving our cloud mission forward and steering the crew toward new horizons.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 1,
   },
   {
@@ -21,10 +18,7 @@ export const officers: Officer[] = [
     office: 'Finance and Resource Office',
     photo: '/images/officers/ryder-vince.webp',
     description: 'Managing budgets and human resources as Vice-Captain. Keeps the flight operations funded and the crew database running smoothly.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 2,
   },
   {
@@ -34,10 +28,7 @@ export const officers: Officer[] = [
     office: 'Finance and Resource Office',
     photo: '/images/officers/andrew-manuel.webp',
     description: 'Overseeing financial controls, liquidation, and audit processes. Ensuring every resource is accounted for.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 3,
   },
   {
@@ -47,10 +38,7 @@ export const officers: Officer[] = [
     office: 'Operations and Events Office',
     photo: '/images/officers/dan-robin.webp',
     description: 'Orchestrating event logistics and strategic planning. Every mission launch goes through Operations first.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 4,
   },
   {
@@ -60,10 +48,7 @@ export const officers: Officer[] = [
     office: 'Relations and Communications Office',
     photo: '/images/officers/lhenald-gumapo.webp',
     description: 'Securing partnerships and resource speakers. The bridge between our crew and the broader AWS community.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 5,
   },
   {
@@ -73,10 +58,7 @@ export const officers: Officer[] = [
     office: 'Creatives and Graphics Office',
     photo: '/images/officers/george-mori-ibanez.webp',
     description: 'Designing PUBMATs and visual content. Gives our brand its cinematic, aviation-coded visual identity.',
-    socials: [
-      { platform: 'linkedin', url: 'https://linkedin.com/in/' },
-      { platform: 'facebook', url: 'https://facebook.com/' },
-    ],
+    socials: [],
     order: 6,
   },
 ];

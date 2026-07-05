@@ -63,7 +63,10 @@ export default function WingmanFAB() {
           onClick={handleOpen}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent-orange shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-blue focus-visible:outline-offset-2"
+          className="fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-full shadow-[0_4px_20px_rgba(139,94,60,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-blue focus-visible:outline-offset-2 overflow-hidden border-2 border-accent-warm-light/40"
+          style={{
+            background: 'linear-gradient(135deg, #8B5E3C 0%, #C4956A 50%, #FF9900 100%)',
+          }}
           aria-label="Open Rory AI Wingman chat"
           data-cursor="cta"
           animate={
@@ -80,9 +83,9 @@ export default function WingmanFAB() {
           }
         >
           <img
-            src="/images/rory-waving.png"
+            src="/images/rory-curious.png"
             alt=""
-            className="w-9 h-9 object-contain"
+            className="w-11 h-11 object-contain"
             draggable={false}
           />
         </motion.button>

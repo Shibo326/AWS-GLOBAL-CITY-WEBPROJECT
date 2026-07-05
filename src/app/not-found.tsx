@@ -20,7 +20,7 @@ export default function NotFound() {
 
         <Link
           href="/"
-          className="inline-block px-8 py-3 rounded-full border border-accent-blue text-accent-blue font-display font-semibold tracking-wide hover:bg-accent-blue/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 focus:ring-offset-background"
+          className="inline-block px-8 py-3 rounded-full border-2 border-accent-orange text-accent-orange font-display font-semibold tracking-wide hover:bg-accent-orange hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-2 focus:ring-offset-background"
         >
           Return to Base
         </Link>

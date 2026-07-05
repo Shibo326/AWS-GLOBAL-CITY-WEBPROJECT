@@ -16,7 +16,7 @@ export function PartnerLogo({ partner }: PartnerLogoProps) {
     <div
       className="h-10 px-6 flex items-center rounded bg-card border border-border
         grayscale transition-all duration-300 hover:grayscale-0
-        hover:border-accent-blue/30"
+        hover:border-accent-orange/30"
     >
       <span className="font-mono text-xs text-secondary-text whitespace-nowrap transition-colors duration-300 hover:text-primary-text">
         {partner.name}

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, type FormEvent, type KeyboardEvent } from 'react';
-import { IconArrowUp } from '@tabler/icons-react';
+import { IconSend2 } from '@tabler/icons-react';
+import { motion } from 'framer-motion';
 
 interface ChatInputProps {
   onSubmit: (message: string) => void;
@@ -9,14 +10,19 @@ interface ChatInputProps {
 }
 
 /**
- * ChatInput — Text input with submit button for the Wingman chat.
- * Validates: empty messages are not submitted, max 500 characters with inline indicator.
- * Disabled while Rory is processing a response.
+ * ChatInput — Premium input field with animated send button.
+ * Features:
+ * - Frosted glass container with orange focus ring
+ * - Animated send button with scale effect
+ * - Character limit indicator (500 max)
+ * - Disabled state while Rory is processing
  */
 export default function ChatInput({ onSubmit, disabled = false }: ChatInputProps) {
   const [value, setValue] = useState('');
-  const [showLimitWarning, setShowLimitWarning] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const canSubmit = value.trim().length > 0 && !disabled;
 
   const handleSubmit = (e?: FormEvent) => {
     e?.preventDefault();
@@ -24,7 +30,6 @@ export default function ChatInput({ onSubmit, disabled = false }: ChatInputProps
     if (!trimmed || disabled) return;
     onSubmit(trimmed);
     setValue('');
-    setShowLimitWarning(false);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -37,43 +42,63 @@ export default function ChatInput({ onSubmit, disabled = false }: ChatInputProps
   const handleChange = (newValue: string) => {
     if (newValue.length <= 500) {
       setValue(newValue);
-      setShowLimitWarning(newValue.length > 450);
-    } else {
-      setShowLimitWarning(true);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex flex-col gap-1">
-      {showLimitWarning && (
-        <span className="text-[10px] text-secondary-text font-mono px-4">
-          Max 500 characters
-        </span>
-      )}
-      <div className="flex items-center gap-2 bg-surface border border-border rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-accent-blue focus-within:border-accent-blue transition-all">
+    <form onSubmit={handleSubmit} className="relative">
+      <div
+        className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-all duration-300 border ${
+          isFocused
+            ? 'border-accent-orange/50 shadow-lg shadow-accent-orange/10 bg-white'
+            : 'border-border/60 bg-white/90 shadow-sm'
+        }`}
+      >
         <input
           ref={inputRef}
           type="text"
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={handleKeyDown}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           disabled={disabled}
           placeholder={
             disabled ? 'Rory is thinking...' : 'Ask Rory anything...'
           }
-          className="flex-1 bg-transparent text-primary-text text-sm placeholder:text-secondary-text outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 bg-transparent text-primary-text text-sm placeholder:text-secondary-text/70 outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Message input"
           maxLength={500}
         />
-        <button
+
+        {/* Character count — shown near limit */}
+        {value.length > 400 && (
+          <span className="text-[10px] font-mono text-secondary-text/60 tabular-nums">
+            {value.length}/500
+          </span>
+        )}
+
+        {/* Send button */}
+        <motion.button
           type="submit"
-          disabled={disabled || !value.trim()}
-          className="flex-shrink-0 w-7 h-7 rounded-full bg-accent-blue text-background flex items-center justify-center transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-accent-blue/80"
+          disabled={!canSubmit}
+          whileHover={canSubmit ? { scale: 1.1 } : {}}
+          whileTap={canSubmit ? { scale: 0.9 } : {}}
+          className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            canSubmit
+              ? 'bg-gradient-to-br from-accent-orange to-accent-warm text-white shadow-md shadow-accent-orange/25 cursor-pointer'
+              : 'bg-border/30 text-secondary-text/40 cursor-not-allowed'
+          }`}
           aria-label="Send message"
         >
-          <IconArrowUp size={16} stroke={2.5} />
-        </button>
+          <IconSend2 size={18} stroke={2} />
+        </motion.button>
       </div>
+
+      {/* Helper text */}
+      <p className="text-[10px] text-secondary-text/50 font-mono text-center mt-2 tracking-wide">
+        Rory answers questions about AWS Cloud Club — STI Global City
+      </p>
     </form>
   );
 }

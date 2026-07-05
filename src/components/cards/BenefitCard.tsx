@@ -17,14 +17,14 @@ interface BenefitCardProps {
 export function BenefitCard({ icon: Icon, title, description, index }: BenefitCardProps) {
   return (
     <motion.div
-      className="bg-card border border-border rounded-card p-6 transition-transform duration-300 hover:-translate-y-1.5"
+      className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-accent-orange/30"
       variants={benefitCardVariants}
       custom={index}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
     >
-      <Icon size={24} className="text-accent-blue mb-4" />
+      <Icon size={24} className="text-accent-orange mb-4" />
       <h3 className="font-display font-semibold text-lg text-primary-text mb-2">
         {title}
       </h3>

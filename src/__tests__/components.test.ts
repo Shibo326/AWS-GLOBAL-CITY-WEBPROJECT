@@ -23,9 +23,9 @@ describe('Navigation data', () => {
     expect(labels).toContain('About');
     expect(labels).toContain('Missions');
     expect(labels).toContain('Crew');
-    expect(labels).toContain('Signals');
+    expect(labels).toContain('Announcements');
     expect(labels).toContain('Wingman');
-    expect(labels).toContain('Enlist');
+    expect(labels).toContain('Join Now');
   });
 });
 

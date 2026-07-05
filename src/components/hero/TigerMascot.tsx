@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 /**
  * TigerMascot — Rory waving video in the hero with mouse-tracking rotation.
@@ -16,7 +15,6 @@ export default function TigerMascot() {
   const targetRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
   const isMobile = useIsMobile();
-  const prefersReducedMotion = useReducedMotion();
 
   const LERP = 0.08;
   const MAX_ROTATION = 8;
@@ -73,30 +71,26 @@ export default function TigerMascot() {
       <div
         ref={containerRef}
         data-cursor="tiger"
-        className="gpu-accelerated"
+        className="gpu-accelerated relative"
         aria-hidden="true"
       >
-        {/* Video version on desktop — looping animated Rory waving */}
-        {!isMobile && !prefersReducedMotion ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-[280px] h-[340px] md:w-[380px] md:h-[460px] object-contain drop-shadow-[0_0_40px_rgba(77,163,255,0.15)] select-none pointer-events-none"
-            poster="/images/rory-waving.png"
-          >
-            <source src="/videos/rory-waving.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          /* Static PNG fallback on mobile or reduced motion */
-          <img
-            src="/images/rory-waving.png"
-            alt=""
-            className="w-[220px] h-[270px] object-contain drop-shadow-[0_0_30px_rgba(77,163,255,0.12)] select-none pointer-events-none"
-            draggable={false}
-          />
-        )}
+        {/* Cloud pillow — fully opaque white glow to completely mask any transparency artifacts */}
+        <div
+          className="absolute inset-[-15%] pointer-events-none"
+          style={{
+            borderRadius: '50%',
+            background: 'radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 40%, rgba(186,230,253,0.3) 60%, transparent 75%)',
+            filter: 'blur(15px)',
+          }}
+        />
+        {/* Static PNG — proper transparency, no checkered artifacts */}
+        <img
+          src="/images/rory-waving.png"
+          alt=""
+          className="relative w-[280px] h-[340px] md:w-[380px] md:h-[460px] object-contain select-none pointer-events-none"
+          style={{ filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15))' }}
+          draggable={false}
+        />
       </div>
     </div>
   );

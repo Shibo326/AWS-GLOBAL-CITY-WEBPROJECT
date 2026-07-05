@@ -34,7 +34,7 @@ export default function SignalBoardPreview() {
   const signals = getDisplayedSignals(announcements);
 
   return (
-    <section className="section-padding" aria-label="Recent announcements">
+    <section className="section-padding bg-zone-cloud-soft" aria-label="Recent announcements">
       <div className="container-site">
         {/* Section label */}
         <SectionLabel text="ANNOUNCEMENTS" showCursor className="mb-8" />
@@ -56,7 +56,7 @@ export default function SignalBoardPreview() {
         <div className="mt-8 flex justify-end">
           <Link
             href="/signals"
-            className="inline-flex items-center gap-1.5 font-mono text-sm text-accent-blue hover:text-primary-text transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-sm text-accent-orange hover:text-primary-text transition-colors"
           >
             View All Announcements
             <IconArrowRight size={16} stroke={2} />

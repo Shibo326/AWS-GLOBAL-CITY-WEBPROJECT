@@ -220,8 +220,8 @@ export const buttonMotion = {
 export const cardMotion = {
   whileHover: {
     y: -8,
-    boxShadow: '0 20px 60px rgba(77,163,255,0.12)',
-    borderColor: 'rgba(77,163,255,0.3)',
+    boxShadow: '0 20px 60px rgba(56, 189, 248, 0.12)',
+    borderColor: 'rgba(56, 189, 248, 0.3)',
     transition: { type: 'spring', stiffness: 300, damping: 20 },
   },
 } satisfies MotionProps;

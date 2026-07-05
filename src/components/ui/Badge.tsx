@@ -13,11 +13,11 @@ interface BadgeProps {
 
 const variantStyles: Record<BadgeVariant, string> = {
   upcoming:
-    'bg-accent-blue/20 text-accent-blue animate-status-pulse-blue',
+    'bg-accent-blue/20 text-[#0284C7] animate-status-pulse-blue',
   active:
-    'bg-accent-orange/20 text-accent-orange animate-status-pulse-orange',
+    'bg-accent-orange/20 text-[#D97706] animate-status-pulse-orange',
   completed:
-    'bg-secondary-text/20 text-secondary-text',
+    'bg-accent-green/20 text-[#059669]',
 };
 
 /**

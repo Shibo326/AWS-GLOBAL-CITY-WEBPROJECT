@@ -36,7 +36,7 @@ export function SectionLabel({
         />
       )}
       <span>
-        <span className="text-accent-blue mr-1" aria-hidden="true">▸</span>
+        <span className="text-accent-orange mr-1" aria-hidden="true">▸</span>
         {text}
         {showCursor && (
           <span className="typewriter-cursor" aria-hidden="true" />

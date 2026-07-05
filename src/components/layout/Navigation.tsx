@@ -11,6 +11,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === '/';
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 80);
@@ -23,15 +24,20 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  // On home page before scroll: white text on blue sky
+  // After scroll or on subpages: dark text on white frosted glass
+  const useWhiteText = isHome && !scrolled;
+
   return (
     <>
       <nav
         aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'backdrop-blur-[20px] bg-[#0D0E12]/85 border-b border-border'
+            ? 'backdrop-blur-[20px] bg-white/85 border-b border-border shadow-sm'
             : 'bg-transparent'
         }`}
+        style={!scrolled && isHome ? { background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 100%)' } : undefined}
       >
         <div className="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -44,7 +50,7 @@ export default function Navigation() {
               alt="AWS Cloud Club Global City Logo"
               width={48}
               height={48}
-              className="rounded-full transition-all duration-600 ease-in-out group-hover:rotate-[360deg] group-hover:shadow-[0_0_16px_rgba(196,149,106,0.4)]"
+              className="rounded-full transition-all duration-600 ease-in-out group-hover:rotate-[360deg] group-hover:shadow-[0_0_16px_rgba(255,153,0,0.4)]"
               priority
             />
           </Link>
@@ -53,7 +59,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
-              const isEnlist = link.label === 'Enlist';
+              const isEnlist = link.label === 'Join Now';
 
               if (isEnlist) {
                 return (
@@ -74,8 +80,10 @@ export default function Navigation() {
                   href={link.href}
                   className={`group/link relative font-display font-medium text-sm transition-colors duration-250 ${
                     isActive
-                      ? 'text-accent-blue'
-                      : 'text-secondary-text hover:text-accent-blue'
+                      ? 'text-accent-orange'
+                      : useWhiteText
+                      ? 'text-white/90 hover:text-white'
+                      : 'text-secondary-text hover:text-accent-orange'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -84,13 +92,15 @@ export default function Navigation() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent-blue"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent-orange"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
                   {/* Hover underline animation (0% → 100% width from left, 250ms) */}
                   {!isActive && (
-                    <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-accent-blue transition-[width] duration-250 ease-out group-hover/link:w-full" />
+                    <span className={`absolute -bottom-1 left-0 h-[2px] w-0 transition-[width] duration-250 ease-out group-hover/link:w-full ${
+                      useWhiteText ? 'bg-white' : 'bg-accent-orange'
+                    }`} />
                   )}
                 </Link>
               );
@@ -107,19 +117,22 @@ export default function Navigation() {
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             <span
-              className={`block w-6 h-0.5 bg-primary-text transition-all duration-300 ${
+              aria-hidden="true"
+              className={`block w-6 h-0.5 transition-all duration-300 ${
                 mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
+              } ${useWhiteText ? 'bg-white' : 'bg-primary-text'}`}
             />
             <span
-              className={`block w-6 h-0.5 bg-primary-text transition-all duration-300 ${
+              aria-hidden="true"
+              className={`block w-6 h-0.5 transition-all duration-300 ${
                 mobileMenuOpen ? 'opacity-0' : ''
-              }`}
+              } ${useWhiteText ? 'bg-white' : 'bg-primary-text'}`}
             />
             <span
-              className={`block w-6 h-0.5 bg-primary-text transition-all duration-300 ${
+              aria-hidden="true"
+              className={`block w-6 h-0.5 transition-all duration-300 ${
                 mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              } ${useWhiteText ? 'bg-white' : 'bg-primary-text'}`}
             />
           </button>
         </div>
@@ -176,7 +189,7 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-white/60 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -194,7 +207,7 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
       >
         {navLinks.map((link, i) => {
           const isActive = pathname === link.href;
-          const isEnlist = link.label === 'Enlist';
+          const isEnlist = link.label === 'Join Now';
 
           return (
             <motion.div
@@ -210,8 +223,8 @@ function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
                   isEnlist
                     ? 'btn-primary text-center mt-4'
                     : isActive
-                    ? 'text-accent-blue'
-                    : 'text-primary-text hover:text-accent-blue'
+                    ? 'text-accent-orange'
+                    : 'text-primary-text hover:text-accent-orange'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 data-cursor={isEnlist ? 'cta' : undefined}

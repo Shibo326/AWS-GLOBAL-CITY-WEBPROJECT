@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   async redirects() {
     return [
       {
@@ -11,6 +12,11 @@ const nextConfig = {
     ];
   },
   async headers() {
+    // Skip CSP in development — it blocks HMR WebSocket and inline scripts
+    if (process.env.NODE_ENV === 'development') {
+      return [];
+    }
+
     return [
       {
         source: '/(.*)',
@@ -23,7 +29,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob:",
-              "connect-src 'self'",
+              "connect-src 'self' ws: wss:",
               "frame-ancestors 'none'",
             ].join('; '),
           },

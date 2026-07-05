@@ -35,19 +35,18 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden border-t"
+      className="relative overflow-hidden border-t bg-zone-runway"
       style={{
-        backgroundColor: "#111318",
-        borderColor: "var(--border)",
+        borderColor: "rgba(255, 255, 255, 0.1)",
       }}
     >
-      {/* Warm gradient line at top */}
+      {/* Runway strip gradient at top */}
       <div
-        className="absolute top-0 left-0 right-0 h-[1px]"
+        className="absolute top-0 left-0 right-0 h-[2px]"
         aria-hidden="true"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, var(--accent-warm-light) 50%, transparent 100%)',
-          opacity: 0.5,
+          background: 'linear-gradient(90deg, transparent 0%, #FF9900 20%, #FBBF24 50%, #FF9900 80%, transparent 100%)',
+          opacity: 0.9,
         }}
       />
       {/* Tiger mascot watermark */}
@@ -60,7 +59,7 @@ export default function Footer() {
           style={{
             opacity: 0.06,
             background:
-              "radial-gradient(circle, rgba(77, 163, 255, 0.4) 0%, rgba(255, 153, 0, 0.2) 40%, transparent 70%)",
+              "radial-gradient(circle, rgba(255, 153, 0, 0.4) 0%, rgba(168, 164, 155, 0.2) 40%, transparent 70%)",
           }}
         />
       </div>
@@ -70,10 +69,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Column 1: Club identity */}
           <div>
-            <h2 className="font-display text-lg font-semibold text-primary-text mb-2">
-              AWS Cloud Club -- Global City
+            <h2 className="font-display text-lg font-semibold mb-2 text-white">
+              AWS Cloud Club — Global City
             </h2>
-            <p className="text-sm text-secondary-text leading-relaxed">
+            <p className="text-sm leading-relaxed text-slate-400">
               A special-interest student organization empowering cloud builders
               at STI Academic Center, Bonifacio Global City.
             </p>
@@ -81,7 +80,7 @@ export default function Footer() {
 
           {/* Column 2: Quick navigation */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-label text-secondary-text mb-4">
+            <h3 className="font-mono text-xs uppercase tracking-label mb-4 text-slate-500">
               Navigation
             </h3>
             <nav aria-label="Footer navigation">
@@ -90,7 +89,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-secondary-text hover:text-accent-blue transition-colors duration-250"
+                      className="text-sm text-slate-400 transition-colors duration-250 hover:text-accent-orange"
                     >
                       {link.label}
                     </Link>
@@ -102,18 +101,20 @@ export default function Footer() {
 
           {/* Column 3: Social icons */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-label text-secondary-text mb-4">
+            <h3 className="font-mono text-xs uppercase tracking-label mb-4 text-slate-500">
               Connect
             </h3>
             <div className="flex items-center gap-2">
-              {socialItems.map((item) => (
+              {socialItems
+                .filter((item) => item.href && item.href !== '#')
+                .map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="p-2 rounded-md text-secondary-text hover:text-accent-blue transition-colors duration-300"
+                  className="p-2 rounded-md text-slate-400 transition-colors duration-300 hover:text-accent-orange"
                   style={{ minWidth: "44px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
                 >
                   <item.icon size={24} stroke={1.5} />
@@ -125,13 +126,12 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-10 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-3"
-          style={{ borderColor: "var(--border)" }}
+          className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3"
         >
-          <p className="font-mono text-xs text-secondary-text">
-            {currentYear} AWS Cloud Club -- Global City. All rights reserved.
+          <p className="font-mono text-xs text-slate-500">
+            {currentYear} AWS Cloud Club — Global City. All rights reserved.
           </p>
-          <p className="font-mono text-xs" style={{ color: 'var(--accent-warm-light)' }}>
+          <p className="font-mono text-xs text-accent-orange">
             Built by Cloud Pilots. Powered by AWS.
           </p>
         </div>

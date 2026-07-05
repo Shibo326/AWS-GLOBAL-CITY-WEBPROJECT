@@ -10,8 +10,8 @@ interface ChatBubbleProps {
 
 /**
  * ChatBubble — Individual message bubble for the Wingman chat.
- * User messages are right-aligned with accent-blue tint.
- * Wingman (Rory) messages are left-aligned with surface bg and a small "R" avatar.
+ * User messages: right-aligned with orange gradient tint, rounded with tail on right.
+ * Wingman (Rory) messages: left-aligned with white surface, Rory avatar, rounded with tail on left.
  * Spring animation on entry via chatBubbleVariants.
  */
 export default function ChatBubble({ message }: ChatBubbleProps) {
@@ -19,7 +19,7 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
 
   return (
     <motion.div
-      className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
+      className={`flex ${isUser ? 'justify-end' : 'justify-start'} items-end gap-2`}
       variants={chatBubbleVariants}
       initial="initial"
       animate="animate"
@@ -27,22 +27,42 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
       {/* Rory avatar */}
       {!isUser && (
         <div
-          className="flex-shrink-0 w-6 h-6 rounded-full bg-accent-orange text-background flex items-center justify-center text-xs font-bold mr-2 mt-1"
+          className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden border border-accent-orange/30 shadow-sm"
+          style={{ background: 'linear-gradient(135deg, #FF9900, #FBBF24)' }}
           aria-hidden="true"
         >
-          R
+          <img
+            src="/images/rory-curious.png"
+            alt=""
+            className="w-full h-full object-contain"
+            draggable={false}
+          />
         </div>
       )}
 
       <div
-        className={`max-w-[80%] rounded-lg px-3 py-2 text-sm leading-relaxed ${
+        className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
           isUser
-            ? 'bg-accent-blue/10 text-primary-text'
-            : 'bg-surface border border-border text-primary-text'
+            ? 'bg-gradient-to-br from-accent-orange to-accent-warm text-white rounded-2xl rounded-br-md'
+            : 'bg-white border border-border/60 text-primary-text rounded-2xl rounded-bl-md'
         }`}
       >
-        {message.content}
+        <p className="whitespace-pre-wrap">{message.content}</p>
+        {/* Timestamp */}
+        <span
+          className={`block text-[10px] mt-1 font-mono ${
+            isUser ? 'text-white/60 text-right' : 'text-secondary-text/60'
+          }`}
+        >
+          {formatTime(message.timestamp)}
+        </span>
       </div>
     </motion.div>
   );
+}
+
+/** Format timestamp to HH:MM */
+function formatTime(ts: number): string {
+  const date = new Date(ts);
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }

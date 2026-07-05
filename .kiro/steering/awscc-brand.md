@@ -6,9 +6,9 @@
 - **Institution:** STI College Global City, Taguig, Philippines
 - **Founded:** 2024
 - **Facebook:** https://www.facebook.com/awslcstiglobal
-- **Mascot:** Tiger wearing aviator goggles — the "Cloud Pilot" persona
-- **Aesthetic:** Top Gun meets AWS — dark, bold, aviation-coded, AI-focused identity
-- **Feeling:** Like booting up a classified mission briefing system. Dark, cinematic, purposeful.
+- **Mascot:** "Rory" — a tiger Cloud Pilot wearing aviator goggles, adventurous and warm
+- **Aesthetic:** Cloud Pilot — sky gradients, floating clouds, warm orange accents, aviation badges
+- **Feeling:** Flying above the clouds on a golden sunrise — ambitious, warm, free, community-driven
 
 ---
 
@@ -16,22 +16,33 @@
 
 | Token | Hex / Value | Usage |
 |-------|-------------|-------|
-| Background | `#0A0C10` | Deep cockpit black — page background |
-| Surface | `#111318` | Dark panel — section backgrounds |
-| Card | `#161B24` | Instrument panel gray — card backgrounds |
-| Primary Text | `#F5F0E8` | Cream/off-white (pulled from logo) |
-| Secondary Text | `#8A9BB5` | Muted blue-gray — captions, metadata |
-| Accent 1 | `#FF9900` | AWS orange — use SPARINGLY, CTAs only |
-| Accent 2 | `#4DA3FF` | Electric sky blue — hover states, glows |
-| Border | `rgba(255,255,255,0.06)` | Subtle dividers |
-| Glow | `rgba(77,163,255,0.12)` | Subtle ambient glow — never neon |
+| Sky Pale | `#E0F2FE` | Page background (high altitude) |
+| Sky Light | `#7DD3FC` | Accent links, hover glow |
+| Sky Mid | `#0369A1` | Deep sky headings |
+| Sky Deep | `#0C4A6E` | Deepest blue (nav text) |
+| Cloud White | `#F8FAFC` | Section surface backgrounds |
+| Cloud Soft | `#F1F5F9` | Cloud shadow layer |
+| Sunrise Warm | `#FFF7ED` | Warm sections (about, crew) |
+| Card | `#FFFFFF` | Pure white card backgrounds |
+| Primary Text | `#1E293B` | Cockpit navy (headings, body) |
+| Secondary Text | `#475569` | Cockpit slate (captions, meta) |
+| Rory Orange | `#FF9900` | AWS brand / Primary CTA |
+| Rory Amber | `#F59E0B` | Tiger amber / gradient |
+| Rory Gold | `#FBBF24` | Tiger highlight / gold hour |
+| Accent Blue | `#38BDF8` | Info, links, status |
+| Accent Green | `#10B981` | Success, online states |
+| Border | `rgba(148, 163, 184, 0.15)` | Subtle cloud borders |
+| Glow | `rgba(56, 189, 248, 0.12)` | Sky ambient glow |
 
 ### Color Usage Rules
 
-- AWS orange (`#FF9900`) is reserved for primary CTAs and critical emphasis only
-- Electric sky blue (`#4DA3FF`) for hover states, active states, and ambient glow effects
-- Background effects (blurred ellipses, grid, scanlines) use the glow token
-- Never use saturated neon — all glows must remain subtle and atmospheric
+- Background follows an "altitude gradient": blue sky at top → cloud white → warm sunrise at bottom
+- AWS orange (`#FF9900`) is the primary brand accent — CTAs, badges, active states
+- Sky blues for informational elements, links, and atmospheric effects
+- Cloud whites/soft grays for card surfaces and section backgrounds
+- Heading gradients use orange → amber → sky-blue (sunset-to-sky transition)
+- Floating cloud shapes (white with blue tint) as ambient background effects
+- Cards use layered soft shadows to feel like they're floating on clouds
 
 ---
 
@@ -157,9 +168,9 @@
 
 ## Design Principles
 
-1. **Dark-first** — Every element designed for the dark cockpit background
-2. **Cinematic** — Motion and layout evoke film/aviation UI
-3. **Purposeful restraint** — Orange is rare, glow is subtle, motion is intentional
-4. **Military precision** — Grid-aligned, typographically disciplined
-5. **Accessible** — Sufficient contrast ratios despite dark theme, keyboard navigable
-6. **Performance** — GPU-only animations, visibility-aware, no jank
+1. **Cloud-first** — Sky gradient backgrounds, floating cloud shapes, altitude-based hierarchy
+2. **Rory's warmth** — AWS orange and tiger amber bring warmth to the cool sky palette
+3. **Aviation identity** — Badge-style buttons, cockpit typography, flight metaphors
+4. **Cloud elevation** — Cards float with layered shadows, sections stack like altitude layers
+5. **Accessible** — High contrast on light backgrounds, keyboard navigable, reduced motion support
+6. **Performance** — GPU-only animations, visibility-aware, smooth cloud drift at 60fps

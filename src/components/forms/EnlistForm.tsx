@@ -116,7 +116,7 @@ export function EnlistForm({ onSubmit }: EnlistFormProps) {
   // Success state: show confirmation card
   if (state.status === 'success') {
     return (
-      <section className="section-padding">
+      <section className="section-padding pt-20">
         <div className="container-site">
           <motion.div
             className="bg-card rounded-card p-8 max-w-lg mx-auto text-center"
@@ -138,7 +138,7 @@ export function EnlistForm({ onSubmit }: EnlistFormProps) {
   }
 
   return (
-    <section className="section-padding">
+    <section className="section-padding pt-20">
       <div className="container-site max-w-2xl mx-auto">
         <motion.div
           variants={staggerContainer}

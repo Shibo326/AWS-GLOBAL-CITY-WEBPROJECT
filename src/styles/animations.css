@@ -63,6 +63,22 @@
   }
 }
 
+/* Cloud drift — gentle horizontal sway for cloud shapes */
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+  33% {
+    transform: translateX(25px) translateY(-4px) translateZ(0);
+  }
+  66% {
+    transform: translateX(40px) translateY(2px) translateZ(0);
+  }
+  100% {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+}
+
 /* Amber pulse — for pinned signal dots */
 @keyframes amber-pulse {
   0%, 100% {
@@ -100,8 +116,8 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: rgba(77, 163, 255, 0.6);
-  box-shadow: 0 0 8px rgba(77, 163, 255, 0.4);
+  background: rgba(255, 153, 0, 0.5);
+  box-shadow: 0 0 8px rgba(255, 153, 0, 0.3);
   animation: scan-line-sweep 3s ease-in-out infinite;
   pointer-events: none;
   will-change: transform;
@@ -111,7 +127,7 @@
 .typewriter-cursor::after {
   content: "▌";
   display: inline-block;
-  color: #4DA3FF;
+  color: var(--accent-orange, #FF9900);
   animation: typewriter-caret 0.7s infinite;
   will-change: opacity;
 }
@@ -126,10 +142,10 @@
 .border-draw-animation {
   --border-angle: 0deg;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 16px;
   background:
-    linear-gradient(var(--card, #161B24), var(--card, #161B24)) padding-box,
-    conic-gradient(from var(--border-angle), #4DA3FF, #FF9900, #4DA3FF) border-box;
+    linear-gradient(var(--card, #FFFFFF), var(--card, #FFFFFF)) padding-box,
+    conic-gradient(from var(--border-angle), #FF9900, #EC4899, #A855F7, #38BDF8, #FF9900) border-box;
   animation: border-draw 4s linear infinite;
   will-change: --border-angle;
 }
@@ -171,6 +187,26 @@
   animation-delay: -40s;
 }
 
+/* Cloud drift — for cloud shape elements */
+.cloud-drift {
+  animation: cloud-drift 60s ease-in-out infinite;
+  will-change: transform;
+}
+
+.cloud-drift:nth-child(2n) {
+  animation-duration: 80s;
+  animation-direction: reverse;
+}
+
+.cloud-drift:nth-child(3n) {
+  animation-duration: 100s;
+}
+
+.cloud-drift:nth-child(4n) {
+  animation-duration: 70s;
+  animation-delay: -15s;
+}
+
 /* Amber pulse — pinned signal indicator dots */
 .amber-pulse {
   animation: amber-pulse 1.5s ease-in-out infinite;
@@ -187,6 +223,7 @@
   .border-draw-animation,
   .star-twinkle,
   .float-drift,
+  .cloud-drift,
   .amber-pulse {
     animation: none !important;
   }

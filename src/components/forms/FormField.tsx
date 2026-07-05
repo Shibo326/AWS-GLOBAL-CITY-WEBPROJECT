@@ -15,7 +15,7 @@ interface FormFieldProps {
 }
 
 const inputStyles =
-  'w-full bg-surface border border-border rounded-lg px-4 py-3 text-primary-text font-body placeholder:text-secondary-text/50 focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors';
+  'w-full bg-surface border border-border rounded-lg px-4 py-3 text-primary-text font-body placeholder:text-secondary-text/50 focus:border-accent-orange focus:ring-1 focus:ring-accent-orange transition-colors';
 
 const errorInputStyles = 'border-red-400 focus:border-red-400 focus:ring-red-400';
 

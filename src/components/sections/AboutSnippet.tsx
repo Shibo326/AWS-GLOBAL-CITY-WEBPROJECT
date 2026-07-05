@@ -11,7 +11,7 @@ import { staggerContainer, fadeInUp } from '@/components/animations/variants';
  */
 export default function AboutSnippet() {
   return (
-    <section className="section-padding" aria-label="About the club">
+    <section className="section-padding bg-zone-warm" aria-label="About the club">
       <motion.div
         className="container-site grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
         variants={staggerContainer}
@@ -21,24 +21,24 @@ export default function AboutSnippet() {
       >
         {/* Left column — text */}
         <motion.div variants={fadeInUp} className="relative flex flex-col gap-4">
-          {/* Warm radial glow behind text */}
+          {/* Warm sunshine glow behind text */}
           <div
             className="absolute -inset-8 pointer-events-none"
             aria-hidden="true"
             style={{
-              background: 'radial-gradient(ellipse at 30% 40%, rgba(139, 94, 60, 0.06) 0%, transparent 60%)',
+              background: 'radial-gradient(ellipse at 30% 40%, rgba(251, 191, 36, 0.08) 0%, transparent 60%)',
             }}
           />
           <div className="relative">
             <h2 className="font-display font-semibold text-2xl md:text-3xl text-primary-text">
               A Different Kind of Cloud Club
             </h2>
-            {/* Warm underline accent */}
+            {/* Colorful underline accent */}
             <div
-              className="mt-2 h-[2px] w-[40%] rounded-full"
+              className="mt-2 h-[3px] w-[40%] rounded-full"
               aria-hidden="true"
               style={{
-                background: 'linear-gradient(90deg, var(--accent-warm-light), transparent)',
+                background: 'linear-gradient(90deg, var(--accent-orange), var(--accent-pink), var(--accent-purple))',
               }}
             />
           </div>
@@ -55,7 +55,7 @@ export default function AboutSnippet() {
         {/* Right column — tiger mascot card with animated border */}
         <motion.div variants={fadeInUp} className="flex justify-center md:justify-end">
           <div
-            className="border-draw-animation bg-card rounded-card p-6 w-[250px] h-[300px] md:w-[300px] md:h-[360px] flex items-center justify-center"
+            className="border-draw-animation bg-card rounded-2xl p-6 w-[250px] h-[300px] md:w-[300px] md:h-[360px] flex items-center justify-center shadow-lg border border-accent-orange/20"
             data-cursor="tiger"
           >
             <img

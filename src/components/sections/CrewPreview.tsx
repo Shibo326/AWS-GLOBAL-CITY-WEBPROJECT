@@ -48,7 +48,7 @@ export default function CrewPreview() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/crew"
-            className="inline-flex items-center gap-2 font-display font-semibold text-sm tracking-[0.04em] rounded-full border border-border px-8 py-3 text-primary-text transition-colors duration-300 hover:border-accent-blue hover:text-accent-blue"
+            className="inline-flex items-center gap-2 font-display font-semibold text-sm tracking-[0.04em] rounded-full border-2 border-accent-orange px-8 py-3 text-primary-text transition-all duration-300 hover:bg-accent-orange hover:text-white hover:-translate-y-1"
           >
             Meet the Full Crew
             <IconArrowRight size={16} stroke={2} />

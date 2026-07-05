@@ -1,7 +1,6 @@
-'use client';
+  'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import { useCallback } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -9,30 +8,20 @@ import { Button } from '@/components/ui';
 import ParallaxLayer from './ParallaxLayer';
 import TigerMascot from './TigerMascot';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { fadeInUp, staggerContainer } from '@/components/animations/variants';
 import { parallaxSpeeds } from '@/lib/constants';
 
-// Dynamic import tsParticles to avoid SSR issues
-const ParticlesField = dynamic(() => import('./ParticlesField'), { ssr: false });
-
 /**
- * HeroSection — Full viewport hero with 4-layer parallax:
- * Layer 1 (z-0): tsParticles star field
- * Layer 2 (z-10): Cloud shapes (blurred ellipses)
- * Layer 3 (z-20): Tiger mascot with mouse tracking
- * Layer 4 (z-30): Text content (headline, subheadline, CTAs, scroll indicator)
+ * HeroSection — Full viewport hero with solid sky gradient background.
+ * No particles (performance). 3 active layers:
+ * Layer 1 (z-10): Cloud shapes (CSS, no JS)
+ * Layer 2 (z-20): Tiger mascot with mouse tracking
+ * Layer 3 (z-30): Text content (headline, subheadline, CTAs, scroll indicator)
  *
- * On mobile, reduces to 2 active layers (starfield + text).
+ * Background is a rich sky-blue gradient that establishes the SKY ZONE.
  */
 export default function HeroSection() {
   const isMobile = useIsMobile();
-  const prefersReducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleScrollDown = useCallback(() => {
     window.scrollTo({
@@ -45,36 +34,29 @@ export default function HeroSection() {
     <section
       className="relative h-screen w-full overflow-hidden"
       aria-label="Hero section"
+      style={{
+        background: 'linear-gradient(180deg, #0369A1 0%, #38BDF8 30%, #7DD3FC 55%, #BAE6FD 75%, #E0F2FE 100%)',
+      }}
     >
-      {/* Subtle warm radial glow centered behind mascot */}
+      {/* Sky atmosphere glow behind mascot */}
       <div
         className="absolute inset-0 pointer-events-none z-[5]"
         aria-hidden="true"
         style={{
-          background: 'radial-gradient(ellipse 600px 400px at 50% 38%, rgba(77, 163, 255, 0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 700px 500px at 50% 38%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 153, 0, 0.05) 40%, transparent 70%)',
         }}
       />
 
-      {/* Warm bottom glow — runway lights effect */}
+      {/* Warm sunrise glow at bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[120px] pointer-events-none z-[5]"
+        className="absolute bottom-0 left-0 right-0 h-[160px] pointer-events-none z-[5]"
         aria-hidden="true"
         style={{
-          background: 'linear-gradient(to top, rgba(196, 149, 106, 0.04) 0%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(255, 255, 255, 0.6) 0%, transparent 100%)',
         }}
       />
 
-      {/* Layer 1: Star field (z-0) */}
-      <ParallaxLayer
-        speed={parallaxSpeeds.starField}
-        className="z-0"
-      >
-        <div className="w-full h-full" aria-hidden="true">
-          {mounted && !prefersReducedMotion && <ParticlesField />}
-        </div>
-      </ParallaxLayer>
-
-      {/* Layer 2: Cloud shapes (z-10) — hidden on mobile */}
+      {/* Layer 1: Cloud shapes (z-10) — hidden on mobile */}
       <ParallaxLayer
         speed={parallaxSpeeds.clouds}
         className="z-10"
@@ -85,7 +67,7 @@ export default function HeroSection() {
         </div>
       </ParallaxLayer>
 
-      {/* Layer 3: Tiger mascot (z-20) — positioned in top-center area */}
+      {/* Layer 2: Tiger mascot (z-20) — positioned in top-center area */}
       <ParallaxLayer
         speed={isMobile ? 0 : parallaxSpeeds.tigerMascot}
         className="z-20"
@@ -95,7 +77,7 @@ export default function HeroSection() {
         </div>
       </ParallaxLayer>
 
-      {/* Layer 4: Text content (z-30) — positioned below mascot */}
+      {/* Layer 3: Text content (z-30) — positioned below mascot */}
       <ParallaxLayer
         speed={isMobile ? 0 : parallaxSpeeds.headline}
         className="z-30"
@@ -112,10 +94,8 @@ export default function HeroSection() {
               variants={fadeInUp}
               className="text-hero font-heading tracking-hero leading-none select-none"
               style={{
-                background: 'linear-gradient(180deg, #FFFFFF 20%, #B8D4F0 80%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: '#FFFFFF',
+                textShadow: '0 2px 20px rgba(12, 74, 110, 0.4), 0 4px 40px rgba(0, 0, 0, 0.15)',
               }}
             >
               CLEARED FOR TAKEOFF
@@ -124,7 +104,8 @@ export default function HeroSection() {
             {/* Subheadline */}
             <motion.p
               variants={fadeInUp}
-              className="mt-3 font-mono text-secondary-text tracking-label text-sm md:text-base"
+              className="mt-3 font-mono tracking-label text-sm md:text-base"
+              style={{ color: '#FFFFFF', textShadow: '0 2px 12px rgba(0, 0, 0, 0.5)' }}
             >
               AWS Cloud Club — Global City
             </motion.p>
@@ -149,7 +130,8 @@ export default function HeroSection() {
             {/* Campus tagline */}
             <motion.p
               variants={fadeInUp}
-              className="mt-4 font-mono text-xs text-secondary-text/60 tracking-label"
+              className="mt-4 font-mono text-xs tracking-label"
+              style={{ color: 'rgba(255, 255, 255, 0.8)', textShadow: '0 1px 8px rgba(0, 0, 0, 0.4)' }}
             >
               STI College Global City, Taguig
             </motion.p>
@@ -161,7 +143,7 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             onClick={handleScrollDown}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-secondary-text cursor-pointer bg-transparent border-none"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/70 cursor-pointer bg-transparent border-none"
             aria-label="Scroll down"
           >
             <span className="text-xs font-mono tracking-label uppercase">
@@ -178,16 +160,37 @@ export default function HeroSection() {
 }
 
 /**
- * CloudShapes — Subtle atmospheric haze that adds depth.
- * Very low opacity, evenly distributed, and well-blurred to avoid white blotches.
+ * CloudShapes — Floating cloud shapes with natural morphology.
+ * Uses irregular border-radius to create fluffy cloud silhouettes.
+ * Clouds are wider than tall, with gentle drift animation.
  */
 function CloudShapes() {
   const clouds = [
-    { top: '20%', left: '5%', width: 200, height: 80, opacity: 0.02 },
-    { top: '30%', left: '65%', width: 240, height: 90, opacity: 0.015 },
-    { top: '55%', left: '25%', width: 180, height: 70, opacity: 0.02 },
-    { top: '65%', left: '70%', width: 160, height: 60, opacity: 0.015 },
-    { top: '80%', left: '40%', width: 220, height: 80, opacity: 0.012 },
+    {
+      top: '10%', left: '-5%', width: 320, height: 100,
+      borderRadius: '60% 80% 50% 70% / 60% 40% 70% 50%',
+      opacity: 0.6, blur: 20,
+    },
+    {
+      top: '20%', left: '60%', width: 280, height: 90,
+      borderRadius: '50% 70% 60% 80% / 70% 50% 60% 40%',
+      opacity: 0.4, blur: 25,
+    },
+    {
+      top: '45%', left: '15%', width: 400, height: 120,
+      borderRadius: '70% 50% 80% 60% / 50% 70% 40% 60%',
+      opacity: 0.3, blur: 30,
+    },
+    {
+      top: '55%', left: '70%', width: 250, height: 80,
+      borderRadius: '60% 70% 50% 80% / 60% 50% 70% 40%',
+      opacity: 0.35, blur: 22,
+    },
+    {
+      top: '75%', left: '30%', width: 350, height: 110,
+      borderRadius: '80% 60% 70% 50% / 40% 60% 50% 70%',
+      opacity: 0.25, blur: 28,
+    },
   ];
 
   return (
@@ -195,15 +198,17 @@ function CloudShapes() {
       {clouds.map((cloud, i) => (
         <div
           key={i}
-          className="absolute rounded-full pointer-events-none"
+          className="cloud-drift absolute pointer-events-none"
           style={{
             top: cloud.top,
             left: cloud.left,
             width: cloud.width,
             height: cloud.height,
+            borderRadius: cloud.borderRadius,
             opacity: cloud.opacity,
-            background: 'radial-gradient(ellipse, rgba(77, 163, 255, 0.3) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-            filter: 'blur(80px)',
+            filter: `blur(${cloud.blur}px)`,
+            background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.6) 100%)',
+            boxShadow: '0 8px 32px rgba(148, 163, 184, 0.1)',
           }}
         />
       ))}

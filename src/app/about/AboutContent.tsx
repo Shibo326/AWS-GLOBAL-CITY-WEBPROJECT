@@ -13,6 +13,9 @@ import {
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { staggerContainer, fadeInUp } from '@/components/animations/variants';
+import { CloudDivider } from '@/components/effects/CloudDivider';
+import { GrassDivider } from '@/components/effects/GrassDivider';
+import { RunwayDivider } from '@/components/effects/RunwayDivider';
 
 // ---------- Data ----------
 
@@ -149,9 +152,9 @@ const timelineItem = {
 
 export default function AboutContent() {
   return (
-    <main id="main-content" className="min-h-screen">
-      {/* ===== Origin Story ===== */}
-      <section className="section-padding">
+    <main id="main-content" className="min-h-screen pt-20">
+      {/* ===== Origin Story — Cloud Zone ===== */}
+      <section className="section-padding bg-zone-cloud">
         <div className="container-site max-w-3xl">
           <ScrollReveal>
             <h1 className="font-heading tracking-hero text-5xl md:text-6xl lg:text-7xl mb-8">
@@ -192,9 +195,9 @@ export default function AboutContent() {
 
           {/* Vision & Mission */}
           <ScrollReveal delay={0.25}>
-            <div className="space-y-6 border-l-2 border-accent-blue/20 pl-6">
+            <div className="space-y-6 border-l-2 border-accent-orange/30 pl-6">
               <div>
-                <h2 className="font-display font-semibold text-lg text-accent-blue mb-2">
+                <h2 className="font-display font-semibold text-lg text-accent-orange mb-2">
                   Vision
                 </h2>
                 <p className="text-secondary-text text-sm leading-relaxed">
@@ -205,7 +208,7 @@ export default function AboutContent() {
                 </p>
               </div>
               <div>
-                <h2 className="font-display font-semibold text-lg text-accent-blue mb-2">
+                <h2 className="font-display font-semibold text-lg text-accent-orange mb-2">
                   Mission
                 </h2>
                 <p className="text-secondary-text text-sm leading-relaxed">
@@ -223,8 +226,11 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ===== Timeline / Flight Log ===== */}
-      <section className="section-padding bg-surface">
+      {/* Cloud transition → Flight Log */}
+      <CloudDivider variant="soft" />
+
+      {/* ===== Timeline / Flight Log — Cloud Soft Zone ===== */}
+      <section className="section-padding bg-zone-cloud-soft">
         <div className="container-site max-w-3xl">
           <ScrollReveal>
             <h2 className="font-heading tracking-hero text-4xl md:text-5xl mb-12">
@@ -242,7 +248,7 @@ export default function AboutContent() {
             {/* Vertical line */}
             <div
               className="absolute left-3 top-0 bottom-0 w-px"
-              style={{ backgroundColor: 'rgba(77, 163, 255, 0.2)' }}
+              style={{ backgroundColor: 'rgba(255, 153, 0, 0.3)' }}
               aria-hidden="true"
             />
 
@@ -254,10 +260,10 @@ export default function AboutContent() {
               >
                 {/* Dot on the line */}
                 <div
-                  className="absolute -left-5 top-1 h-2.5 w-2.5 rounded-full bg-accent-blue"
+                  className="absolute -left-5 top-1 h-2.5 w-2.5 rounded-full bg-accent-orange"
                   aria-hidden="true"
                 />
-                <span className="font-mono text-xs text-accent-blue tracking-label uppercase">
+                <span className="font-mono text-xs text-accent-orange tracking-label uppercase">
                   {milestone.date}
                 </span>
                 <h3 className="font-display font-semibold text-base text-primary-text mt-1">
@@ -272,8 +278,11 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ===== Departments ===== */}
-      <section className="section-padding">
+      {/* Cloud transition → Departments */}
+      <CloudDivider variant="white" />
+
+      {/* ===== Departments — Cloud Zone ===== */}
+      <section className="section-padding bg-zone-cloud">
         <div className="container-site">
           <ScrollReveal>
             <h2 className="font-heading tracking-hero text-4xl md:text-5xl mb-4">
@@ -299,12 +308,12 @@ export default function AboutContent() {
               return (
                 <motion.div
                   key={dept.name}
-                  className="bg-card border border-border rounded-card p-5 glow-border"
+                  className="card-cloud"
                   variants={fadeInUp}
                 >
                   <Icon
                     size={24}
-                    className="text-accent-blue mb-3"
+                    className="text-accent-orange mb-3"
                     stroke={1.5}
                   />
                   <h3 className="font-display font-semibold text-base text-primary-text mb-2">
@@ -320,8 +329,11 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ===== Six Offices ===== */}
-      <section className="section-padding bg-surface">
+      {/* Cloud transition → Six Offices */}
+      <CloudDivider variant="soft" />
+
+      {/* ===== Six Offices — Cloud Soft Zone ===== */}
+      <section className="section-padding bg-zone-cloud-soft">
         <div className="container-site max-w-3xl">
           <ScrollReveal>
             <h2 className="font-heading tracking-hero text-4xl md:text-5xl mb-4">
@@ -346,7 +358,7 @@ export default function AboutContent() {
             {offices.map((office) => (
               <motion.li
                 key={office.name}
-                className="border-l-2 border-border pl-5 hover:border-accent-blue transition-colors duration-300"
+                className="border-l-2 border-border pl-5 hover:border-accent-orange transition-colors duration-300"
                 variants={fadeInUp}
               >
                 <h3 className="font-display font-semibold text-base text-primary-text">
@@ -360,6 +372,12 @@ export default function AboutContent() {
           </motion.ul>
         </div>
       </section>
+
+      {/* ═══ LAND ZONE — Rory descends over green countryside ═══ */}
+      <GrassDivider />
+
+      {/* ═══ RUNWAY — Rory touches down ═══ */}
+      <RunwayDivider />
     </main>
   );
 }

@@ -17,7 +17,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   primary: 'btn-primary',
   ghost: 'btn-ghost',
   outline:
-    'inline-flex items-center justify-center rounded-full border border-border bg-transparent text-primary-text font-display font-semibold text-sm tracking-[0.04em] cursor-pointer transition-colors duration-300 hover:border-accent-blue hover:text-accent-blue',
+    'inline-flex items-center justify-center rounded-full border-2 border-accent-orange bg-transparent text-primary-text font-display font-semibold text-sm tracking-[0.04em] cursor-pointer transition-all duration-300 hover:bg-accent-orange hover:text-white hover:-translate-y-1',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

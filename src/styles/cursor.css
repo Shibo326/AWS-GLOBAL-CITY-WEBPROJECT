@@ -1,99 +1,158 @@
-/* Custom Cursor Styles — Aviation Reticle System */
+/* Custom Cursor — Cloud Pilot Targeting Reticle
+   Aviation-inspired cursor with sky-blue ring, orange accents,
+   and smooth trailing motion that feels like a cockpit HUD element.
+   ============================================ */
+
+/* When custom cursor is active, hide the system cursor */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
 
 .custom-cursor {
   pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 9999;
+  mix-blend-mode: normal;
 }
 
+/* Dot — small solid circle that tracks the exact pointer position.
+   Uses Rory Orange as the core color for brand alignment. */
 .cursor-dot {
   width: 8px;
   height: 8px;
-  background: #F5F0E8;
+  background: var(--accent-orange, #FF9900);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  transition: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
   transform: translate3d(0, 0, 0);
   will-change: transform;
+  box-shadow:
+    0 0 4px rgba(255, 153, 0, 0.6),
+    0 0 8px rgba(255, 153, 0, 0.3);
 }
 
+/* Ring — larger targeting reticle that lerps toward cursor.
+   Uses sky-blue to evoke a cockpit HUD / altitude indicator. */
 .cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(245, 240, 232, 0.5);
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   transform: translate3d(0, 0, 0);
   will-change: transform;
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  box-shadow:
+    0 0 6px rgba(56, 189, 248, 0.15),
+    inset 0 0 6px rgba(56, 189, 248, 0.05);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.3s ease,
+              background-color 0.3s ease,
+              box-shadow 0.3s ease,
+              opacity 0.3s ease;
 }
 
-/* CTA hover state — expanded amber ring */
+/* ============================================
+   INTERACTIVE HOVER STATES
+   ============================================ */
+
+/* Links and buttons — ring expands with warm orange glow,
+   signals "this is clickable" like a target lock indicator */
+.cursor-ring--hover-link {
+  width: 44px;
+  height: 44px;
+  border-color: rgba(255, 153, 0, 0.7);
+  background: rgba(255, 153, 0, 0.06);
+  box-shadow:
+    0 0 12px rgba(255, 153, 0, 0.2),
+    inset 0 0 8px rgba(255, 153, 0, 0.05);
+}
+
+/* CTA hover state — bold orange "target acquired" effect,
+   full brand orange ring with amber glow pulse */
 .cursor-ring--hover-cta {
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 153, 0, 0.2);
-  border-color: #FF9900;
+  width: 52px;
+  height: 52px;
+  border-color: var(--accent-orange, #FF9900);
+  border-width: 2px;
+  background: rgba(255, 153, 0, 0.08);
+  box-shadow:
+    0 0 16px rgba(255, 153, 0, 0.3),
+    0 0 32px rgba(245, 158, 11, 0.12),
+    inset 0 0 10px rgba(255, 153, 0, 0.06);
+  animation: cursor-cta-pulse 1.8s ease-in-out infinite;
 }
 
-/* Tiger hover state — targeting reticle mode */
+@keyframes cursor-cta-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 16px rgba(255, 153, 0, 0.3),
+      0 0 32px rgba(245, 158, 11, 0.12),
+      inset 0 0 10px rgba(255, 153, 0, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(255, 153, 0, 0.4),
+      0 0 40px rgba(245, 158, 11, 0.18),
+      inset 0 0 12px rgba(255, 153, 0, 0.08);
+  }
+}
+
+/* Tiger/Rory hover state — playful amber-pink dashed ring,
+   feels like a friendly "hello" zone with warmth */
 .cursor-ring--hover-tiger {
   width: 48px;
   height: 48px;
-  border-color: #4DA3FF;
-  background: transparent;
+  border-color: var(--accent-warm, #F59E0B);
+  border-style: dashed;
+  background: rgba(251, 191, 36, 0.06);
+  box-shadow:
+    0 0 12px rgba(251, 191, 36, 0.2),
+    inset 0 0 8px rgba(251, 191, 36, 0.04);
 }
 
-.cursor-ring--hover-tiger::before,
-.cursor-ring--hover-tiger::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #4DA3FF;
-  pointer-events: none;
-}
+/* ============================================
+   DOT STATES
+   ============================================ */
 
-/* Horizontal crosshair line */
-.cursor-ring--hover-tiger::before {
-  width: 64px;
-  height: 1px;
-  transform: translate(-50%, -50%);
-}
-
-/* Vertical crosshair line */
-.cursor-ring--hover-tiger::after {
-  width: 1px;
-  height: 64px;
-  transform: translate(-50%, -50%);
-}
-
-/* Hidden state */
+/* Hide dot when hovering interactive elements (ring takes over) */
 .cursor-dot--hidden {
   opacity: 0;
-  transform: scale(0) translate3d(0, 0, 0);
+  transform: scale(0) translate3d(0, 0, 0) !important;
 }
 
-/* Hide cursor elements on mobile/touch */
-@media (max-width: 767px) {
+/* ============================================
+   RESPONSIVENESS & ACCESSIBILITY
+   ============================================ */
+
+/* Hide on mobile/touch — system cursor is better for touch */
+@media (max-width: 767px), (hover: none) {
   .custom-cursor,
   .cursor-dot,
   .cursor-ring {
     display: none !important;
   }
+
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
+  }
 }
 
-/* Respect reduced motion preferences */
+/* Respect reduced motion — disable custom cursor entirely */
 @media (prefers-reduced-motion: reduce) {
-  .cursor-ring {
-    transition: none;
-  }
-
+  .custom-cursor,
   .cursor-dot,
   .cursor-ring {
     display: none !important;
+  }
+
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
   }
 }

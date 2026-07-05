@@ -39,7 +39,7 @@ export default function MissionBoardPreview() {
   const displayedEvents = getSortedEvents(events);
 
   return (
-    <section className="section-padding" aria-label="Active missions preview">
+    <section className="section-padding bg-zone-cloud" aria-label="Active missions preview">
       <div className="container-site">
         {/* Section label */}
         <SectionLabel text="ACTIVE MISSIONS" showCursor className="mb-8" />
@@ -67,7 +67,7 @@ export default function MissionBoardPreview() {
         <div className="mt-8 flex justify-end">
           <Link
             href="/missions"
-            className="inline-flex items-center gap-1.5 font-mono text-sm text-accent-blue hover:text-primary-text transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-sm text-accent-orange hover:text-primary-text transition-colors"
           >
             View All Missions
             <IconArrowRight size={16} stroke={2} />

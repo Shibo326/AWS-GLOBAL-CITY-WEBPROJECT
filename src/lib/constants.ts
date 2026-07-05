@@ -2,17 +2,22 @@
 // AWS Cloud Club — Global City: Design Tokens & Constants
 // =============================================================================
 
-/** Color system tokens */
+/** Color system tokens — Cloud Pilot palette */
 export const colors = {
-  background: '#0A0C10',
-  surface: '#111318',
-  card: '#161B24',
-  primaryText: '#F5F0E8',
-  secondaryText: '#8A9BB5',
+  background: '#E0F2FE',
+  surface: '#F8FAFC',
+  card: '#FFFFFF',
+  primaryText: '#1E293B',
+  secondaryText: '#475569',
   accentOrange: '#FF9900',
-  accentBlue: '#4DA3FF',
-  border: 'rgba(255,255,255,0.06)',
-  glow: 'rgba(77,163,255,0.12)',
+  accentBlue: '#38BDF8',
+  skyDeep: '#0C4A6E',
+  skyMid: '#0369A1',
+  skyLight: '#7DD3FC',
+  roryAmber: '#F59E0B',
+  roryGold: '#FBBF24',
+  border: 'rgba(148, 163, 184, 0.15)',
+  glow: 'rgba(56, 189, 248, 0.12)',
 } as const;
 
 /** Responsive breakpoints in pixels */
@@ -50,7 +55,7 @@ export const navLinks = [
   { label: 'Crew', href: '/crew' },
   { label: 'Announcements', href: '/signals' },
   { label: 'Wingman', href: '/wingman' },
-  { label: 'Enlist', href: '/enlist' },
+  { label: 'Join Now', href: '/enlist' },
 ] as const;
 
 /** Social media links for the club */

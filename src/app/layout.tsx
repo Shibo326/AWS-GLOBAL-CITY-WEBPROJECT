@@ -18,13 +18,6 @@ import Footer from "@/components/layout/Footer";
 import { SkipNav } from "@/components/ui/SkipNav";
 
 // Non-critical global components — lazy loaded, client-only
-const BackgroundEffects = dynamic(
-  () =>
-    import("@/components/effects/BackgroundEffects").then((m) => ({
-      default: m.BackgroundEffects,
-    })),
-  { ssr: false }
-);
 const CustomCursor = dynamic(
   () => import("@/components/effects/CustomCursor"),
   { ssr: false }
@@ -95,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${inter.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} font-sans antialiased`}
       >
@@ -105,9 +98,6 @@ export default function RootLayout({
 
           {/* Global navigation */}
           <Navigation />
-
-          {/* Background visual effects (decorative, behind content) */}
-          <BackgroundEffects />
 
           {/* Custom cursor (desktop only) */}
           <CustomCursor />

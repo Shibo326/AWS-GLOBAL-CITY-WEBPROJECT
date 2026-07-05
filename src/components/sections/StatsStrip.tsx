@@ -11,16 +11,16 @@ import { stats } from '@/data/stats';
 export default function StatsStrip() {
   return (
     <section
-      className="relative bg-surface border-b border-border section-padding"
+      className="relative bg-zone-cloud border-b border-border section-padding"
       aria-label="Club statistics"
     >
-      {/* Subtle top gradient border */}
+      {/* Colorful top gradient border */}
       <div
-        className="absolute top-0 left-0 right-0 h-[1px]"
+        className="absolute top-0 left-0 right-0 h-[2px]"
         aria-hidden="true"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, var(--accent-blue) 50%, transparent 100%)',
-          opacity: 0.4,
+          background: 'linear-gradient(90deg, var(--accent-pink), var(--accent-orange), var(--accent-warm-light), var(--accent-green), var(--accent-blue))',
+          opacity: 0.6,
         }}
       />
 
@@ -38,7 +38,7 @@ export default function StatsStrip() {
               <CountUp
                 target={stat.value}
                 suffix={stat.suffix ?? ''}
-                className="text-4xl md:text-5xl font-heading text-primary-text tracking-hero [text-shadow:0_0_20px_rgba(77,163,255,0.15)]"
+                className="text-4xl md:text-5xl font-heading text-accent-orange tracking-hero"
               />
               <span className="mt-3 font-mono text-xs uppercase tracking-label text-secondary-text inline-flex items-center gap-1.5">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-warm-light opacity-70" aria-hidden="true" />
