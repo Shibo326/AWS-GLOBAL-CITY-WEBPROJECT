@@ -412,83 +412,40 @@
      Each zone is a DISTINCT illustrated environment.
      ═══════════════════════════════════════════════════════ */
 
-  /* Sky zone — Vivid bright cartoon sky with puffy vibes */
+  /* Sky zone — Vivid bright cartoon sky */
   .bg-zone-sky {
     background: linear-gradient(180deg, #4FC3F7 0%, #81D4FA 40%, #B3E5FC 100%);
-    position: relative;
   }
 
-  .bg-zone-sky::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse 200px 100px at 15% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 70%),
-      radial-gradient(ellipse 150px 80px at 75% 35%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
-      radial-gradient(ellipse 180px 90px at 45% 60%, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* Cloud zone — Warm cream parchment, storybook page feel */
+  /* Cloud zone — Warm cream parchment, solid background for clean flow */
   .bg-zone-cloud {
     background-color: #FFFDE7;
-    border-top: 3px dashed rgba(255, 140, 0, 0.2);
-    border-bottom: 3px dashed rgba(255, 140, 0, 0.2);
   }
 
-  /* Cloud-soft zone — Soft illustrated paper texture */
+  /* Cloud-soft zone — Slightly warmer cream for alternating rhythm */
   .bg-zone-cloud-soft {
     background-color: #FFF8E1;
     background-image: 
-      radial-gradient(circle at 20% 50%, rgba(255, 183, 77, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 80% 30%, rgba(0, 184, 212, 0.06) 0%, transparent 40%);
+      radial-gradient(circle at 20% 50%, rgba(255, 183, 77, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 183, 77, 0.04) 0%, transparent 50%);
   }
 
   /* Warm zone — Golden sunset storybook page */
   .bg-zone-warm {
     background: linear-gradient(180deg, #FFF8E1 0%, #FFE0B2 100%);
-    position: relative;
   }
 
-  .bg-zone-warm::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse 300px 200px at 70% 20%, rgba(255, 140, 0, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  /* Landing zone — Lush cartoon meadow */
+  /* Landing zone — Lush cartoon meadow, smooth gradient */
   .bg-zone-landing {
     background: linear-gradient(180deg, #C8E6C9 0%, #A5D6A7 50%, #81C784 100%);
-    position: relative;
   }
 
-  .bg-zone-landing::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 40px,
-      rgba(46, 125, 50, 0.15) 40px,
-      rgba(46, 125, 50, 0.15) 42px
-    );
-    pointer-events: none;
-  }
-
-  /* Ground zone — Rich illustrated ground */
+  /* Ground zone — Slightly darker green for visual separation */
   .bg-zone-ground {
-    background: linear-gradient(180deg, #81C784 0%, #66BB6A 100%);
-    border-top: 4px solid #2E7D32;
+    background: linear-gradient(180deg, #A5D6A7 0%, #81C784 100%);
   }
 
-  /* Runway zone — Cartoon asphalt with dashed runway lines */
+  /* Runway zone — Cartoon asphalt with subtle dashed runway lines */
   .bg-zone-runway {
     background: linear-gradient(180deg, #1A1A2E 0%, #0D0D1A 100%);
     color: #E0E0E0;
@@ -510,7 +467,7 @@
       transparent 50px
     );
     transform: translateY(-50%);
-    opacity: 0.3;
+    opacity: 0.15;
     pointer-events: none;
   }
 

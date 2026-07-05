@@ -29,24 +29,26 @@ export default function Home() {
 
       {/* ═══ SKY ZONE — Rory is flying high ═══ */}
       <HeroSection />
-      <CloudDivider variant="white" />
 
-      {/* ═══ CLOUD ZONE — floating through clouds ═══ */}
+      {/* Sky → Cloud transition (only zone-boundary divider) */}
+      <CloudDivider />
+
+      {/* ═══ CLOUD ZONE — floating through warm cream sections ═══ */}
       <StatsStrip />
       <AboutSnippet />
-      <CloudDivider variant="soft" />
       <MissionBoardPreview />
       <SignalBoardPreview />
-      <CloudDivider variant="soft" />
       <CrewPreview />
 
-      {/* ═══ LAND ZONE — descending over green countryside ═══ */}
+      {/* Cloud → Land transition (only zone-boundary divider) */}
       <GrassDivider />
+
+      {/* ═══ LAND ZONE — descending over green countryside ═══ */}
       <WingmanCTA />
       <EnlistSection />
       <PartnersMarquee />
 
-      {/* ═══ RUNWAY — Rory touches down ═══ */}
+      {/* Land → Runway transition (only zone-boundary divider) */}
       <RunwayDivider />
     </main>
   );

@@ -26,7 +26,7 @@ export default function CrewPreview() {
     .slice(0, 6);
 
   return (
-    <section className="section-padding" aria-label="Crew preview">
+    <section className="section-padding bg-zone-cloud" aria-label="Crew preview">
       <div className="container-site">
         {/* Section label */}
         <SectionLabel text="YOUR CREW" showCursor className="mb-8" />

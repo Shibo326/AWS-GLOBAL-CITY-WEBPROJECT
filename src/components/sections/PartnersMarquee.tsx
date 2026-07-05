@@ -21,24 +21,24 @@ export default function PartnersMarquee() {
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section className="section-padding bg-[#C8E6C9] border-y-[3px] border-[#2D2D44]" aria-label="Trusted partners">
+    <section className="section-padding bg-zone-ground" aria-label="Trusted partners">
       <div className="container-site">
         <SectionLabel text="TRUSTED PARTNERS" showCursor={false} />
       </div>
 
       {/* Marquee container */}
       <div className="group relative mt-8 overflow-hidden">
-        {/* Left fade gradient — matches cartoon green zone */}
+        {/* Left fade gradient — matches ground zone */}
         <div
           className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24"
-          style={{ background: 'linear-gradient(to right, #C8E6C9, transparent)' }}
+          style={{ background: 'linear-gradient(to right, #A5D6A7, transparent)' }}
           aria-hidden="true"
         />
 
-        {/* Right fade gradient — matches cartoon green zone */}
+        {/* Right fade gradient — matches ground zone */}
         <div
           className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24"
-          style={{ background: 'linear-gradient(to left, #C8E6C9, transparent)' }}
+          style={{ background: 'linear-gradient(to left, #A5D6A7, transparent)' }}
           aria-hidden="true"
         />
 

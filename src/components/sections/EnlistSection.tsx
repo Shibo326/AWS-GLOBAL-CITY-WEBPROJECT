@@ -40,7 +40,7 @@ export default function EnlistSection() {
   return (
     <ScrollReveal>
       <section
-        className="relative section-padding bg-zone-landing"
+        className="relative section-padding bg-zone-ground"
         aria-label="Enlist as a Cloud Pilot"
       >
         {/* Colorful gradient overlay at top */}

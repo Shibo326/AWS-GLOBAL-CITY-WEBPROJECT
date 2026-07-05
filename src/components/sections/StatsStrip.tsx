@@ -11,19 +11,9 @@ import { stats } from '@/data/stats';
 export default function StatsStrip() {
   return (
     <section
-      className="relative bg-[#FFFDE7] border-y-[3px] border-[#2D2D44] section-padding"
+      className="relative bg-zone-cloud section-padding"
       aria-label="Club statistics"
     >
-      {/* Colorful cartoon dashed top border */}
-      <div
-        className="absolute top-2 left-[5%] right-[5%] h-[3px]"
-        aria-hidden="true"
-        style={{
-          background: 'repeating-linear-gradient(90deg, var(--accent-pink) 0px, var(--accent-pink) 15px, transparent 15px, transparent 25px, var(--accent-orange) 25px, var(--accent-orange) 40px, transparent 40px, transparent 50px)',
-          opacity: 0.5,
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-6">
           {stats.map((stat, index) => (

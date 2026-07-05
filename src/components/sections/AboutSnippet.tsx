@@ -11,7 +11,7 @@ import { staggerContainer, fadeInUp } from '@/components/animations/variants';
  */
 export default function AboutSnippet() {
   return (
-    <section className="section-padding bg-zone-warm" aria-label="About the club">
+    <section className="section-padding bg-zone-cloud-soft" aria-label="About the club">
       <motion.div
         className="container-site grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
         variants={staggerContainer}
