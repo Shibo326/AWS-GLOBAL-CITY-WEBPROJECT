@@ -113,8 +113,8 @@ const config: Config = {
         "status-pulse-blue": "status-pulse-blue 2s infinite",
         "status-pulse-orange": "status-pulse-orange 1.2s infinite",
         "scroll-bounce": "scroll-bounce 2s ease-in-out infinite",
-        "marquee": "marquee 40s linear infinite",
-        "marquee-mobile": "marquee 20s linear infinite",
+        "marquee": "marquee 20s linear infinite",
+        "marquee-mobile": "marquee 12s linear infinite",
         "wiggle": "wiggle 1.5s ease-in-out infinite",
         "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
         "bounce-cartoon": "bounce-cartoon 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -144,7 +144,7 @@ const config: Config = {
         },
         "marquee": {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(-33.333%)" },
         },
         "float": {
           "0%, 100%": { transform: "translateY(0px) rotate(-1deg)" },

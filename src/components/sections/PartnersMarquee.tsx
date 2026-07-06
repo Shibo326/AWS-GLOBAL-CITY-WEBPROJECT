@@ -17,8 +17,8 @@ export default function PartnersMarquee() {
     return null;
   }
 
-  // Duplicate array for seamless infinite loop
-  const duplicatedPartners = [...partners, ...partners];
+  // Triple array for seamless infinite loop at faster speed
+  const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
     <section className="section-padding bg-zone-ground" aria-label="Trusted partners">
