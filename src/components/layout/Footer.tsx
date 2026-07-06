@@ -35,7 +35,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden bg-[#1A1A2E] border-t-[4px] border-[#FFD54F]"
+      className="zone-night relative overflow-hidden border-t-[4px] border-[#FFD54F]"
     >
       {/* Cartoon runway dashed lines */}
       <div
@@ -77,7 +77,7 @@ export default function Footer() {
             <h2 className="font-display text-lg font-bold mb-2 text-[#FFD54F]">
               AWS Cloud Club — Global City
             </h2>
-            <p className="text-sm leading-relaxed text-slate-300 font-medium">
+            <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--text-on-dark)' }}>
               A special-interest student organization empowering cloud builders
               at STI Academic Center, Bonifacio Global City.
             </p>
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Column 2: Quick navigation */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-label mb-4 text-slate-500">
+            <h3 className="font-mono text-xs uppercase tracking-label mb-4" style={{ color: 'var(--text-on-dark)', opacity: 0.7 }}>
               Navigation
             </h3>
             <nav aria-label="Footer navigation">
@@ -94,7 +94,8 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-400 transition-colors duration-250 hover:text-accent-orange"
+                      className="text-sm transition-colors duration-250 hover:text-[#FF8C00]"
+                      style={{ color: 'var(--text-on-dark)' }}
                     >
                       {link.label}
                     </Link>
@@ -106,7 +107,7 @@ export default function Footer() {
 
           {/* Column 3: Social icons */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-label mb-4 text-slate-500">
+            <h3 className="font-mono text-xs uppercase tracking-label mb-4" style={{ color: 'var(--text-on-dark)', opacity: 0.7 }}>
               Connect
             </h3>
             <div className="flex items-center gap-2">
@@ -119,8 +120,8 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="p-2 rounded-xl text-slate-300 border-2 border-slate-600 transition-all duration-300 hover:text-[#FFD54F] hover:border-[#FFD54F] hover:shadow-[2px_2px_0px_#FFD54F] hover:-translate-y-1"
-                  style={{ minWidth: "44px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
+                  className="p-2 rounded-xl border-2 border-slate-600 transition-all duration-300 hover:text-[#FFD54F] hover:border-[#FFD54F] hover:shadow-[2px_2px_0px_#FFD54F] hover:-translate-y-1"
+                  style={{ color: 'var(--text-on-dark)', minWidth: "44px", minHeight: "44px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
                 >
                   <item.icon size={24} stroke={1.5} />
                 </a>
@@ -133,7 +134,7 @@ export default function Footer() {
         <div
           className="mt-10 pt-6 border-t-2 border-dashed border-slate-600 flex flex-col md:flex-row items-center justify-between gap-3"
         >
-          <p className="font-mono text-xs text-slate-400 font-semibold">
+          <p className="font-mono text-xs font-semibold" style={{ color: 'var(--text-on-dark)' }}>
             {currentYear} AWS Cloud Club — Global City. All rights reserved.
           </p>
           <p className="font-mono text-xs text-[#FFD54F] font-bold">

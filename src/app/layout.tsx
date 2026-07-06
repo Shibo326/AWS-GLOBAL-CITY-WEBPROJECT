@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import {
-  Inter,
+  Nunito,
   Bebas_Neue,
   Space_Grotesk,
   JetBrains_Mono,
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
-import "@/styles/cursor.css";
+
 import "@/styles/animations.css";
 import { Providers } from "@/contexts/Providers";
 
@@ -16,18 +16,16 @@ import { Providers } from "@/contexts/Providers";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { SkipNav } from "@/components/ui/SkipNav";
+import { PageVisibilityHandler } from "@/components/layout/PageVisibilityHandler";
 
 // Non-critical global components — lazy loaded, client-only
-const CustomCursor = dynamic(
-  () => import("@/components/effects/CustomCursor"),
-  { ssr: false }
-);
+
 const WingmanFAB = dynamic(
   () => import("@/components/wingman/WingmanFAB"),
   { ssr: false }
 );
 
-const inter = Inter({
+const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -88,19 +86,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} font-sans antialiased`}
-      >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${bebasNeue.variable} ${nunito.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${playfairDisplay.variable}`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t==null&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased">
         <Providers>
+          {/* Page Visibility — pauses CSS animations when tab is hidden */}
+          <PageVisibilityHandler />
+
           {/* Skip navigation — first focusable element */}
           <SkipNav />
 
           {/* Global navigation */}
           <Navigation />
-
-          {/* Custom cursor (desktop only) */}
-          <CustomCursor />
 
           {/* Page content */}
           {children}

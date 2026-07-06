@@ -1,0 +1,163 @@
+/* ═══════════════════════════════════════════════════
+   Rory's World — Cartoon Keyframe Animations
+   ═══════════════════════════════════════════════════ */
+
+/* Rory mascot idle float */
+@keyframes float-rory {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Status dot pulse (green for active, orange for upcoming) */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Floating cloud drift — old (kept for compat) */
+@keyframes cloud-float {
+  0% { transform: translateX(-10%); }
+  100% { transform: translateX(110%); }
+}
+
+/* FAB idle pulse */
+@keyframes fab-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* ═══════════════════════════════════════════════════
+   NEW — Cartoon World Decoration Keyframes
+   ═══════════════════════════════════════════════════ */
+
+/* Cartoon cloud horizontal drift — travels full width */
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(calc(100vw + 50%));
+  }
+}
+
+/* Cartoon cloud gentle vertical bob — floating in place */
+@keyframes cloud-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(var(--cloud-bob-distance, -8px)); }
+}
+
+/* Grass blade gentle sway */
+@keyframes grass-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+
+/* Star twinkle — opacity pulse */
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+/* Sun slow rotation */
+@keyframes sun-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Animation Classes — Existing
+   ═══════════════════════════════════════════════════ */
+
+.float-rory {
+  animation: float-rory 3s ease-in-out infinite;
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.pulse-dot-orange {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.cloud-element {
+  animation: cloud-float var(--cloud-duration, 20s) linear infinite;
+  will-change: transform;
+}
+
+.fab-pulse {
+  animation: fab-pulse 2.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════
+   Animation Classes — Cartoon Decorations
+   ═══════════════════════════════════════════════════ */
+
+/* Cartoon cloud drift animation (LEGACY — kept for backwards compat) */
+.cartoon-cloud {
+  animation: cloud-drift var(--cloud-drift-duration, 30s) linear infinite;
+  animation-delay: var(--cloud-drift-delay, 0s);
+  will-change: transform;
+}
+
+/* Cartoon cloud gentle vertical bob — statically positioned clouds */
+.cartoon-cloud-bob {
+  animation: cloud-bob var(--cloud-bob-duration, 12s) ease-in-out infinite;
+  animation-delay: var(--cloud-bob-delay, 0s);
+  will-change: transform;
+}
+
+/* Grass blade sway */
+.grass-blade {
+  animation: grass-sway 3.5s ease-in-out infinite;
+  animation-delay: var(--grass-sway-delay, 0s);
+  transform-origin: bottom center;
+}
+
+/* Star twinkle */
+.twinkle-star {
+  animation: star-twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* Sun rotation — very slow, 60s full cycle */
+.sun-rotate {
+  animation: sun-rotate 60s linear infinite;
+  transform-origin: center center;
+}
+
+/* ═══════════════════════════════════════════════════
+   Reduced Motion — Disable ALL decoration animations
+   ═══════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .float-rory,
+  .pulse-dot,
+  .pulse-dot-orange,
+  .cloud-element,
+  .fab-pulse,
+  .cartoon-cloud,
+  .cartoon-cloud-bob,
+  .grass-blade,
+  .twinkle-star,
+  .sun-rotate {
+    animation: none !important;
+  }
+}

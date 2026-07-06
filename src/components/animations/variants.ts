@@ -5,13 +5,13 @@ import type { Variants, MotionProps } from 'framer-motion';
 // AWS Cloud Club — Global City
 // =============================================================================
 
-/** Scroll reveal: fade in + slide up from 40px */
+/** Scroll reveal: fade in + slide up from 30px */
 export const scrollRevealVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 };
 

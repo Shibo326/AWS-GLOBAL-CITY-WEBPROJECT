@@ -16,13 +16,8 @@ const SESSION_KEY = 'awscc-loaded';
  */
 export default function LoadSequence({ onComplete }: LoadSequenceProps) {
   const { setLoadComplete } = useLoad();
-  const [visible, setVisible] = useState(() => {
-    // Check immediately on mount — if already loaded this session, skip entirely
-    if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_KEY)) {
-      return false;
-    }
-    return true;
-  });
+  // Always initialize true — matches server render, prevents hydration mismatch
+  const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
   const fadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const doneTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -44,17 +39,17 @@ export default function LoadSequence({ onComplete }: LoadSequenceProps) {
   }, [setLoadComplete, onComplete]);
 
   useEffect(() => {
-    // If already marked complete (sessionStorage hit), signal immediately
-    if (!visible) {
-      if (!hasCompleted.current) {
-        hasCompleted.current = true;
-        document.body.style.overflow = '';
-        setLoadComplete(true);
-        onComplete();
-      }
+    // After hydration: if already loaded this session, skip splash immediately
+    if (sessionStorage.getItem(SESSION_KEY)) {
+      hasCompleted.current = true;
+      setVisible(false);
+      document.body.style.overflow = '';
+      setLoadComplete(true);
+      onComplete();
       return;
     }
 
+    // First visit this session — show splash, lock scroll, run timers
     document.body.style.overflow = 'hidden';
     fadeTimerRef.current = setTimeout(() => setFading(true), 1800);
     doneTimerRef.current = setTimeout(() => finish(), 2300);

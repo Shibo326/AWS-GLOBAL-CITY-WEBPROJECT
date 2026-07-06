@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { cardRevealVariants, cardMotion } from '@/components/animations/variants';
-import { Badge } from '@/components/ui/Badge';
 import type { MissionEvent } from '@/types';
 
 interface MissionCardProps {
@@ -31,101 +30,102 @@ function truncateDescription(text: string, maxLength = 120): string {
   return text.slice(0, maxLength).trimEnd() + '...';
 }
 
-/** Maps event status to Badge variant */
-const statusVariantMap: Record<MissionEvent['status'], 'upcoming' | 'active' | 'completed'> = {
-  UPCOMING: 'upcoming',
-  ACTIVE: 'active',
-  COMPLETED: 'completed',
+/** Status-based accent bar colors */
+const statusBarColorMap: Record<MissionEvent['status'], string> = {
+  ACTIVE: 'var(--accent-green)',
+  UPCOMING: 'var(--accent-orange)',
+  COMPLETED: '#9CA3AF',
 };
 
-/** Status-based card accent colors — cartoon style */
-const statusAccentMap: Record<MissionEvent['status'], string> = {
-  UPCOMING: 'hover:border-[#00B8D4] hover:shadow-[6px_6px_0px_#006064]',
-  ACTIVE: 'hover:border-[#FF8C00] hover:shadow-[6px_6px_0px_#C56200]',
-  COMPLETED: 'hover:border-[#00C853] hover:shadow-[6px_6px_0px_#1B5E20]',
+/** Status dot class — green pulse for active, orange pulse for upcoming, static gray for completed */
+const statusDotClassMap: Record<MissionEvent['status'], string> = {
+  ACTIVE: 'pulse-dot',
+  UPCOMING: 'pulse-dot-orange',
+  COMPLETED: '',
+};
+
+/** Status dot inline color */
+const statusDotColorMap: Record<MissionEvent['status'], string> = {
+  ACTIVE: '#00C853',
+  UPCOMING: '#FF8C00',
+  COMPLETED: '#9CA3AF',
+};
+
+/** Status display labels */
+const statusLabelMap: Record<MissionEvent['status'], string> = {
+  ACTIVE: 'Active',
+  UPCOMING: 'Upcoming',
+  COMPLETED: 'Completed',
 };
 
 /**
- * MissionCard — Enhanced event card with scan-line sweep animation,
- * location display, tags, and status-aware hover effects.
- * Tells the story of each mission with richer visual hierarchy.
+ * MissionCard — Cartoon-styled event card with colored top accent bar,
+ * pulsing status dot, and tag pills.
+ * Renders as .card-cartoon with all mission data fields visible.
  */
 export function MissionCard({ event, index }: MissionCardProps) {
   return (
     <motion.article
-      className={`group relative flex flex-col gap-3 rounded-[24px] border-[3px] border-[#2D2D44] bg-card p-6 shadow-[4px_4px_0px_#2D2D44] transition-all duration-300 hover:-translate-y-2 hover:-translate-x-1 ${statusAccentMap[event.status]}`}
+      className="card-cartoon relative flex flex-col gap-3 overflow-hidden"
       variants={cardRevealVariants}
       custom={index}
       {...cardMotion}
     >
-      {/* Top bar: date + status */}
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-xs text-secondary-text tracking-wide">
-          {formatDate(event.date)}
-        </span>
-        <Badge variant={statusVariantMap[event.status]}>
-          {event.status}
-        </Badge>
-      </div>
-
-      {/* Event name */}
-      <h3 className="font-display font-semibold text-lg text-primary-text leading-snug">
-        {event.name}
-      </h3>
-
-      {/* Description */}
-      <p className="text-sm text-secondary-text leading-relaxed">
-        {truncateDescription(event.description)}
-      </p>
-
-      {/* Location (if available) */}
-      {event.location && (
-        <div className="flex items-center gap-1.5 mt-auto pt-2">
-          <svg
-            className="h-3.5 w-3.5 text-secondary-text/70 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          <span className="font-mono text-[11px] text-secondary-text/70 truncate">
-            {event.location}
-          </span>
-        </div>
-      )}
-
-      {/* Tags */}
-      {event.tags && event.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t-2 border-dashed border-[#2D2D44]/20">
-          {event.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="inline-block rounded-full bg-[#E8F5E9] px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#2E7D32] border border-[#2E7D32]/30"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Decorative corner accent — subtle flight path indicator */}
+      {/* 4px colored top accent bar — first child, full width, rounded top matching card radius */}
       <div
-        className="absolute top-0 right-0 w-16 h-16 rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        className="w-full"
         style={{
-          background: event.status === 'UPCOMING'
-            ? 'radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 70%)'
-            : event.status === 'ACTIVE'
-            ? 'radial-gradient(circle at top right, rgba(255, 153, 0, 0.08), transparent 70%)'
-            : 'radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 70%)',
+          height: '4px',
+          backgroundColor: statusBarColorMap[event.status],
         }}
         aria-hidden="true"
       />
+
+      {/* Content area */}
+      <div className="flex flex-col gap-3 px-5 pb-5 pt-3">
+        {/* Top bar: date + status badge with dot */}
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-xs text-[var(--secondary-text)] tracking-wide">
+            {formatDate(event.date)}
+          </span>
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 font-mono text-xs uppercase tracking-wider"
+            aria-label={`Status: ${statusLabelMap[event.status]}`}
+          >
+            {/* Status dot */}
+            <span
+              className={`inline-block h-2 w-2 rounded-full ${statusDotClassMap[event.status]}`}
+              style={{ backgroundColor: statusDotColorMap[event.status] }}
+              aria-hidden="true"
+            />
+            {statusLabelMap[event.status]}
+          </span>
+        </div>
+
+        {/* Mission title */}
+        <h3 className="font-[family-name:var(--font-heading)] font-semibold text-lg text-[var(--primary-text)] leading-snug">
+          {event.name}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-[var(--secondary-text)] leading-relaxed">
+          {truncateDescription(event.description)}
+        </p>
+
+        {/* Tag pills */}
+        {event.tags && event.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-dashed border-[var(--border-color)]/20">
+            {event.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="cartoon-badge"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </motion.article>
   );
 }

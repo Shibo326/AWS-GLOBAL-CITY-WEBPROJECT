@@ -7,6 +7,16 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { CrewCard } from '@/components/cards/CrewCard';
 import { officers } from '@/data/officers';
 
+/** Office-based accent color mapping for CrewCard */
+const officeAccentColors: Record<string, string> = {
+  'Executive Office': '#F59E0B',
+  'Finance and Resource Office': '#10B981',
+  'Operations and Events Office': '#6366F1',
+  'Relations and Communications Office': '#EC4899',
+  'Creatives and Graphics Office': '#8B5CF6',
+};
+const defaultAccentColor = '#38BDF8';
+
 /** Stagger container with 60ms between cards */
 const crewStaggerContainer = {
   hidden: {},
@@ -26,7 +36,7 @@ export default function CrewPreview() {
     .slice(0, 6);
 
   return (
-    <section className="section-padding bg-zone-cloud" aria-label="Crew preview">
+    <section className="section-padding" aria-label="Crew preview">
       <div className="container-site">
         {/* Section label */}
         <SectionLabel text="YOUR CREW" showCursor className="mb-8" />
@@ -40,7 +50,13 @@ export default function CrewPreview() {
           viewport={{ once: true, amount: 0.15 }}
         >
           {displayedOfficers.map((officer) => (
-            <CrewCard key={officer.id} officer={officer} />
+            <CrewCard
+              key={officer.id}
+              name={officer.name}
+              role={officer.role}
+              office={officer.office}
+              accentColor={officeAccentColors[officer.office] || defaultAccentColor}
+            />
           ))}
         </motion.div>
 

@@ -13,7 +13,6 @@ import {
 } from '@tabler/icons-react';
 import { staggerContainer, fadeInUp } from '@/components/animations/variants';
 import ScrollReveal from '@/components/animations/ScrollReveal';
-import { SectionLabel } from '@/components/ui/SectionLabel';
 import { announcements } from '@/data/announcements';
 import { events } from '@/data/events';
 import type { Announcement } from '@/types';
@@ -76,101 +75,10 @@ export function SignalBoardContent() {
     .slice(0, 6);
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* ═══ HERO BANNER — Sky Zone ═══ */}
-      <section
-        className="relative overflow-hidden py-16 md:py-24"
-        style={{
-          background: 'linear-gradient(180deg, #0369A1 0%, #38BDF8 40%, #7DD3FC 70%, #BAE6FD 100%)',
-        }}
-      >
-        {/* Floating clouds */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <div
-            className="cloud-drift absolute"
-            style={{
-              top: '15%', left: '-8%', width: 360, height: 100,
-              borderRadius: '60% 80% 50% 70% / 60% 40% 70% 50%',
-              opacity: 0.5, filter: 'blur(20px)',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.6) 100%)',
-            }}
-          />
-          <div
-            className="cloud-drift absolute"
-            style={{
-              top: '40%', left: '55%', width: 280, height: 80,
-              borderRadius: '50% 70% 60% 80% / 70% 50% 60% 40%',
-              opacity: 0.4, filter: 'blur(25px)',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.6) 100%)',
-            }}
-          />
-          <div
-            className="cloud-drift absolute"
-            style={{
-              top: '65%', left: '20%', width: 320, height: 90,
-              borderRadius: '70% 50% 80% 60% / 50% 70% 40% 60%',
-              opacity: 0.3, filter: 'blur(28px)',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.6) 100%)',
-            }}
-          />
-        </div>
+    <div className="py-12 md:py-16">
 
-        {/* Radar pulse glow */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            width: 500, height: 500, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(56,189,248,0.05) 40%, transparent 70%)',
-          }}
-        />
-
-        <div className="container-site relative z-10">
-          <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <IconAntenna size={28} className="text-white/80" stroke={1.5} />
-              <SectionLabel text="COMMS TOWER — ALL FREQUENCIES" dotColor="#22c55e" className="text-white/70" showCursor={false} />
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.05}>
-            <h1
-              className="font-heading tracking-hero text-5xl md:text-6xl lg:text-7xl leading-none select-none"
-              style={{
-                color: '#FFFFFF',
-                textShadow: '0 2px 20px rgba(12, 74, 110, 0.4)',
-              }}
-            >
-              SIGNAL BOARD
-            </h1>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <p className="mt-3 text-white/80 text-base md:text-lg max-w-2xl">
-              All transmissions from the flight crew. Pinned signals carry priority orders — 
-              everything else flows in chronological order from the latest broadcast.
-            </p>
-          </ScrollReveal>
-        </div>
-
-        {/* Cloud divider at bottom */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 80" fill="none" className="w-full h-[60px] md:h-[80px]" preserveAspectRatio="none">
-            <path
-              d="M0,80 L0,50 C180,40 300,30 480,32 C660,34 720,48 900,50 C1080,52 1200,36 1440,38 L1440,80 Z"
-              fill="#FFFFFF"
-              opacity="0.5"
-            />
-            <path
-              d="M0,80 L0,55 C120,48 260,38 420,40 C580,42 680,56 840,58 C1000,60 1100,44 1260,42 C1380,40 1420,50 1440,52 L1440,80 Z"
-              fill="#FFFFFF"
-            />
-          </svg>
-        </div>
-      </section>
-
-      {/* ═══ EVENT HIGHLIGHTS — Cloud Zone ═══ */}
-      <section className="section-padding bg-zone-cloud relative">
+      {/* ═══ EVENT HIGHLIGHTS ═══ */}
+      <section className="section-padding relative">
         {/* Subtle atmosphere */}
         <div className="absolute top-0 left-0 right-0 h-[200px] pointer-events-none" aria-hidden="true"
           style={{ background: 'linear-gradient(to bottom, rgba(186, 230, 253, 0.1) 0%, transparent 100%)' }}
@@ -262,16 +170,8 @@ export function SignalBoardContent() {
         </div>
       </section>
 
-      {/* ═══ Cloud → Signal Feed transition divider ═══ */}
-      <div aria-hidden="true" className="relative w-full overflow-hidden pointer-events-none select-none" style={{ height: 'clamp(40px, 6vw, 80px)', marginTop: '-1px', marginBottom: '-1px' }}>
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
-          <path d="M0,80 L0,40 C200,30 400,20 600,22 C800,24 1000,36 1200,34 C1340,32 1400,28 1440,30 L1440,80 Z" fill="#FAFBFC" />
-          <path d="M0,80 L0,55 C140,48 320,38 520,40 C720,42 880,56 1080,54 C1240,52 1380,44 1440,46 L1440,80 Z" fill="#FAFBFC" />
-        </svg>
-      </div>
-
-      {/* ═══ SIGNAL FEED — Cloud Soft Zone ═══ */}
-      <section className="section-padding bg-zone-cloud-soft relative">
+      {/* ═══ SIGNAL FEED ═══ */}
+      <section className="section-padding relative">
         {/* Subtle decorative elements */}
         <div className="absolute top-12 right-8 pointer-events-none opacity-[0.03]" aria-hidden="true">
           <IconAntenna size={200} stroke={0.5} className="text-primary-text" />
@@ -383,12 +283,6 @@ export function SignalBoardContent() {
         </div>
       </section>
 
-      {/* ═══ Bottom atmospheric glow ═══ */}
-      <div
-        className="h-16 pointer-events-none"
-        aria-hidden="true"
-        style={{ background: 'linear-gradient(to bottom, #FAFBFC 0%, #F1F5F9 100%)' }}
-      />
     </div>
   );
 }

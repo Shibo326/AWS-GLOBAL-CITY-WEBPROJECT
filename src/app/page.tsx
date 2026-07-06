@@ -7,9 +7,14 @@ import dynamic from 'next/dynamic';
 import HeroSection from '@/components/hero/HeroSection';
 import LoadSequence from '@/components/hero/LoadSequence';
 import StatsStrip from '@/components/sections/StatsStrip';
-import { CloudDivider } from '@/components/effects/CloudDivider';
-import { GrassDivider } from '@/components/effects/GrassDivider';
-import { RunwayDivider } from '@/components/effects/RunwayDivider';
+
+// Zone infrastructure
+import ZoneSection from '@/components/zones/ZoneSection';
+import WaveDivider from '@/components/zones/WaveDivider';
+import { ZONE_COLORS } from '@/lib/zones';
+
+// Cartoon world decorations
+import { CartoonClouds, GrassOverlay } from '@/components/decorations';
 
 // Below fold — lazy loaded for performance
 const AboutSnippet = dynamic(() => import('@/components/sections/AboutSnippet'));
@@ -24,32 +29,56 @@ export default function Home() {
   const handleLoadComplete = useCallback(() => {}, []);
 
   return (
-    <main id="main-content" className="relative">
+    <main className="relative">
       <LoadSequence onComplete={handleLoadComplete} />
 
       {/* ═══ SKY ZONE — Rory is flying high ═══ */}
-      <HeroSection />
-
-      {/* Sky → Cloud transition (only zone-boundary divider) */}
-      <CloudDivider />
+      <ZoneSection zone="sky" id="main-content">
+        <HeroSection />
+        <WaveDivider type={1} fillColor={ZONE_COLORS.cloud} />
+      </ZoneSection>
 
       {/* ═══ CLOUD ZONE — floating through warm cream sections ═══ */}
-      <StatsStrip />
-      <AboutSnippet />
-      <MissionBoardPreview />
-      <SignalBoardPreview />
-      <CrewPreview />
+      <ZoneSection zone="cloud">
+        <CartoonClouds count={4} className="opacity-40" />
+        <StatsStrip />
+        <AboutSnippet />
+        <WaveDivider type={2} fillColor={ZONE_COLORS.ground} />
+      </ZoneSection>
 
-      {/* Cloud → Land transition (only zone-boundary divider) */}
-      <GrassDivider />
+      {/* ═══ GROUND ZONE — missions on solid earth ═══ */}
+      <ZoneSection zone="ground">
+        <GrassOverlay bladeCount={35} variant="ground" />
+        <MissionBoardPreview />
+        <WaveDivider type={3} fillColor={ZONE_COLORS.airfield} />
+      </ZoneSection>
 
-      {/* ═══ LAND ZONE — descending over green countryside ═══ */}
-      <WingmanCTA />
-      <EnlistSection />
-      <PartnersMarquee />
+      {/* ═══ AIRFIELD ZONE — signals from the tarmac ═══ */}
+      <ZoneSection zone="airfield">
+        <GrassOverlay bladeCount={25} variant="airfield" />
+        <SignalBoardPreview />
+        <WaveDivider type={1} fillColor={ZONE_COLORS.hangar} />
+      </ZoneSection>
 
-      {/* Land → Runway transition (only zone-boundary divider) */}
-      <RunwayDivider />
+      {/* ═══ HANGAR ZONE — crew quarters ═══ */}
+      <ZoneSection zone="hangar">
+        <GrassOverlay bladeCount={20} variant="airfield" />
+        <CrewPreview />
+        <WaveDivider type={4} fillColor={ZONE_COLORS.hangar} />
+      </ZoneSection>
+
+      {/* ═══ WINGMAN ZONE — preparing for takeoff (warm green) ═══ */}
+      <ZoneSection zone="hangar">
+        <WingmanCTA />
+        <WaveDivider type={2} fillColor={ZONE_COLORS.ground} />
+      </ZoneSection>
+
+      {/* ═══ GROUND ZONE — warm cream enlistment & partners ═══ */}
+      <ZoneSection zone="ground">
+        <EnlistSection />
+        <PartnersMarquee />
+        <WaveDivider type={3} fillColor={ZONE_COLORS.night} />
+      </ZoneSection>
     </main>
   );
 }

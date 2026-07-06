@@ -2,30 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../styles/cartoon-keyframes.css';
+
 :root {
   /* ═══════════════════════════════════════════════════════════════
      🎨 CARTOON WORLD COLOR TOKENS — Rory's Illustrated Universe
      Vibrant, saturated, playful. Like stepping into a storybook.
      ═══════════════════════════════════════════════════════════════ */
 
-  /* Core backgrounds */
+  /* ── Zone Backgrounds ── */
+  --zone-sky: #87CEEB;
+  --zone-cloud: #F0F8FF;
+  --zone-ground: #F5EDD0;
+  --zone-airfield: #E8F0D8;
+  --zone-hangar: #D4E8D4;
+  --zone-runway: #2C3E50;
+  --zone-night: #1A1A2E;
+
+  /* ── Brand Accents ── */
+  --accent-orange: #FF8C00;
+  --accent-blue: #00B8D4;
+  --accent-warm: #FFB300;
+  --accent-green: #00C853;
+  --accent-coral: #FF6E6E;
+
+  /* ── Text Colors ── */
+  --primary-text: #1A1A2A;
+  --secondary-text: #4A4A6A;
+  --text-on-dark: #E0E0E0;
+
+  /* ── Structural Variables ── */
+  --border-color: #1A1A2A;
+  --radius-card: 16px;
+  --radius-button: 999px;
+  --shadow-offset: 3px;
+
+  /* ── Font Tokens ── */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Spacing Tokens ── */
+  --section-padding-desktop: 80px;
+  --section-padding-mobile: 40px;
+  --container-max: 1280px;
+
+  /* ── Legacy / Extended Tokens (retained for existing components) ── */
   --background: #B3E5FC;
   --surface: #FFF9E6;
   --card: #FFFFFF;
 
-  /* Text */
-  --primary-text: #1A1A2E;
-  --secondary-text: #4A4A6A;
-
-  /* Rory's accent palette — VIVID, SATURATED */
-  --accent-orange: #FF8C00;
-  --accent-blue: #00B8D4;
-  --accent-warm: #FFB300;
   --accent-warm-light: #FFD54F;
   --accent-purple: #9C27B0;
   --accent-pink: #FF4081;
-  --accent-green: #00C853;
-  --accent-coral: #FF6E6E;
 
   /* Sky zone — bright cartoon sky */
   --sky-deep: #1565C0;
@@ -48,6 +77,11 @@
   --land-ground: #2E7D32;
   --land-runway: #1A1A2E;
 
+  /* Tarmac zone — warm concrete taxiway */
+  --tarmac-base: #F0EFEA;
+  --tarmac-soft: #ECEAE3;
+  --tarmac-edge: #E8E6DF;
+
   /* Sunrise */
   --sunrise-warm: #FFF3E0;
 
@@ -58,21 +92,15 @@
   --cartoon-shadow: #2D2D44;
   --cartoon-shadow-colored: #C56200;
 
-  /* Font family variables */
-  --font-heading: "Bebas Neue", sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  /* Extended font family variables (legacy compat) */
   --font-display: "Space Grotesk", sans-serif;
   --font-accent: "Playfair Display", serif;
   --font-label: "JetBrains Mono", monospace;
 
-  /* Spacing */
+  /* Legacy spacing */
   --section-padding: 5rem;
-  --container-max: 1280px;
 
-  /* Cartoon radii */
-  --radius-card: 24px;
-  --radius-button: 999px;
+  /* Cartoon radii (extended) */
   --radius-badge: 16px;
 
   /* Cartoon borders */
@@ -90,6 +118,82 @@
   --shadow-cartoon-pink: 4px 4px 0px #880E4F;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   🌙 NIGHT MODE — The storybook shifts to nighttime
+   Activated by adding class "dark" to <html> element
+   ═══════════════════════════════════════════════════════════════ */
+html.dark {
+  /* Zone backgrounds — nighttime equivalents */
+  --zone-sky: #1B2838;
+  --zone-cloud: #1E2A3A;
+  --zone-ground: #2A2520;
+  --zone-airfield: #1E2E1E;
+  --zone-hangar: #1A2E1A;
+  --zone-runway: #0F1923;
+  --zone-night: #0D0D1A;
+
+  /* Text colors — inverted for dark backgrounds */
+  --primary-text: #F0F0F5;
+  --secondary-text: #A0A0C0;
+  --text-on-dark: #E8E8F0;
+
+  /* Structural — lighter borders for dark mode */
+  --border-color: #4A4A6A;
+  --border: #4A4A6A;
+  --border-light: #5A5A7A;
+
+  /* Card background — dark surface */
+  --card: #242438;
+
+  /* Sky zone overrides for dark */
+  --sky-pale: #1B2838;
+  --sky-light: #2A4A6A;
+  --sky-mid: #1E3A5A;
+  --sky-deep: #0F1923;
+  --sky-top: #1B2838;
+
+  /* Cloud zone overrides */
+  --cloud-white: #1E2A3A;
+  --cloud-body: #1E2A3A;
+  --cloud-shadow: #3A3A5A;
+  --cloud-soft: #242438;
+
+  /* Land zone overrides */
+  --land-mist: #1A2E1A;
+  --land-sage: #1E3A1E;
+  --land-warm: #2A4A2A;
+  --land-slate: #3A5A3A;
+  --land-ground: #1A2E1A;
+  --land-runway: #0D0D1A;
+
+  /* Tarmac zone overrides */
+  --tarmac-base: #1E2A3A;
+  --tarmac-soft: #242438;
+  --tarmac-edge: #1A2438;
+
+  /* Sunrise override */
+  --sunrise-warm: #2A2520;
+
+  /* Surface overrides */
+  --background: #1B2838;
+  --surface: #242438;
+
+  /* Cartoon shadow — lighter for dark mode */
+  --cartoon-shadow: #0A0A1A;
+  --cartoon-shadow-colored: #8B4000;
+
+  /* Accents stay vibrant (they pop on dark) */
+  --accent-orange: #FF9F1C;
+  --accent-blue: #38D9FF;
+  --accent-warm: #FFD166;
+  --accent-green: #2ECC71;
+  --accent-coral: #FF7E7E;
+  --accent-warm-light: #FFD166;
+
+  /* Glow — more visible on dark */
+  --glow: rgba(56, 217, 255, 0.25);
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -99,6 +203,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
@@ -110,6 +215,7 @@
     line-height: 1.75;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Typography defaults — BOLDER, more cartoon-y */
@@ -171,11 +277,37 @@
     background: var(--accent-warm);
   }
 
-  /* Focus indicators */
+  /* Dark mode scrollbar */
+  html.dark ::-webkit-scrollbar-track {
+    background: #1E2A3A;
+    border-left: 2px solid #4A4A6A;
+  }
+
+  html.dark ::-webkit-scrollbar-thumb {
+    background: #FF9F1C;
+    border-color: #4A4A6A;
+  }
+
+  html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #FFD166;
+  }
+
+  /* Dark mode selection */
+  html.dark ::selection {
+    background-color: rgba(255, 159, 28, 0.4);
+    color: #F0F0F5;
+  }
+
+  /* Accessible focus indicators — 3px solid orange outline with 3px offset */
   :focus-visible {
     outline: 3px solid var(--accent-orange);
     outline-offset: 3px;
     border-radius: 8px;
+  }
+
+  /* Remove default focus ring when not using keyboard */
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 }
 
@@ -445,6 +577,21 @@
     background: linear-gradient(180deg, #A5D6A7 0%, #81C784 100%);
   }
 
+  /* Tarmac zone — Warm concrete taxiway, between dark runway and green grass */
+  .bg-zone-tarmac {
+    background: linear-gradient(180deg, #F0EFEA 0%, #E8E6DF 100%);
+    background-image: 
+      radial-gradient(circle at 30% 40%, rgba(255, 183, 77, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107, 114, 128, 0.03) 0%, transparent 50%);
+  }
+
+  /* Tarmac-soft zone — Slightly warmer variant for alternating rhythm */
+  .bg-zone-tarmac-soft {
+    background-color: #ECEAE3;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(255, 183, 77, 0.04) 0%, transparent 60%);
+  }
+
   /* Runway zone — Cartoon asphalt with subtle dashed runway lines */
   .bg-zone-runway {
     background: linear-gradient(180deg, #1A1A2E 0%, #0D0D1A 100%);
@@ -629,6 +776,272 @@
     border-color: var(--border);
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   }
+
+  /* ═══════════════════════════════════════
+     CARD CARTOON — Design System Standard
+     Simplified cartoon card for zone sections
+     ═══════════════════════════════════════ */
+
+  .card-cartoon {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-card);
+    background-color: #FFFFFF;
+    box-shadow: 3px 3px 0 var(--border-color);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+
+  .card-cartoon:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--border-color);
+  }
+
+  /* ═══════════════════════════════════════
+     BTN-GHOST-DARK — Ghost on dark zones
+     ═══════════════════════════════════════ */
+
+  .btn-ghost-dark {
+    background: transparent;
+    color: var(--text-on-dark);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-button);
+    padding: 12px 28px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .btn-ghost-dark:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-ghost-dark:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* ═══════════════════════════════════════
+     ZONE BACKGROUNDS — Flat color classes
+     Used by ZoneSection wrapper component
+     ═══════════════════════════════════════ */
+
+  .zone-sky {
+    background-color: var(--zone-sky);
+  }
+
+  .zone-cloud {
+    background-color: var(--zone-cloud);
+  }
+
+  .zone-ground {
+    background-color: var(--zone-ground);
+  }
+
+  .zone-airfield {
+    background-color: var(--zone-airfield);
+  }
+
+  .zone-hangar {
+    background-color: var(--zone-hangar);
+  }
+
+  .zone-runway {
+    background-color: var(--zone-runway);
+    color: var(--text-on-dark);
+  }
+
+  .zone-night {
+    background-color: var(--zone-night);
+    color: var(--text-on-dark);
+  }
+
+  /* Zone section wrapper — supports WaveDivider children */
+  .zone-section {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ═══════════════════════════════════════
+     HEADLINE UNDERLINE — Orange accent bar
+     ═══════════════════════════════════════ */
+
+  .headline-underline::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-orange);
+    margin: 12px auto 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     🌙 DARK MODE COMPONENT OVERRIDES
+     Night mode adjustments for cartoon components
+     ═══════════════════════════════════════════════════════ */
+
+  /* Card cartoon in dark mode */
+  html.dark .card-cartoon {
+    background-color: var(--card);
+    border-color: var(--border-color);
+    box-shadow: 3px 3px 0 var(--border-color);
+  }
+
+  html.dark .card-cartoon:hover {
+    box-shadow: 6px 6px 0 var(--border-color);
+  }
+
+  /* Buttons in dark mode */
+  html.dark .btn-primary {
+    border-color: var(--border-color);
+    box-shadow: 3px 3px 0 var(--border-color);
+  }
+
+  html.dark .btn-primary:hover {
+    box-shadow: 6px 6px 0 var(--border-color);
+  }
+
+  html.dark .btn-ghost {
+    background: var(--card);
+    color: var(--primary-text);
+    border-color: var(--border-color);
+    box-shadow: 3px 3px 0 var(--border-color);
+  }
+
+  html.dark .btn-ghost:hover {
+    background: var(--accent-blue);
+    color: #FFFFFF;
+  }
+
+  html.dark .btn-ghost-dark {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Card base in dark mode */
+  html.dark .card-base {
+    background-color: var(--card);
+    border-color: var(--border-color);
+  }
+
+  /* Card cloud in dark mode */
+  html.dark .card-cloud {
+    background-color: var(--card);
+    border-color: var(--border-color);
+  }
+
+  /* Card land in dark mode */
+  html.dark .card-land {
+    background-color: var(--card);
+    border-color: var(--border-color);
+  }
+
+  /* Speech bubble dark mode */
+  html.dark .speech-bubble {
+    background: var(--card);
+    border-color: var(--border-color);
+  }
+
+  /* Nav in dark mode */
+  html.dark nav[aria-label="Main navigation"] {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Nav scrolled state in dark mode */
+  html.dark .nav-scrolled {
+    background: rgba(30, 42, 58, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Nav transparent state in dark mode */
+  html.dark .nav-transparent {
+    background: rgba(27, 40, 56, 0.4) !important;
+  }
+
+  /* Zone backgrounds in dark mode — override gradients */
+  html.dark .bg-zone-sky {
+    background: linear-gradient(180deg, #0F1923 0%, #1B2838 40%, #1E2A3A 100%);
+  }
+
+  html.dark .bg-zone-cloud {
+    background-color: #1E2A3A;
+  }
+
+  html.dark .bg-zone-cloud-soft {
+    background-color: #1A2438;
+    background-image: none;
+  }
+
+  html.dark .bg-zone-warm {
+    background: linear-gradient(180deg, #2A2520 0%, #3A2A1A 100%);
+  }
+
+  html.dark .bg-zone-landing {
+    background: linear-gradient(180deg, #1A2E1A 0%, #1E3A1E 50%, #2A4A2A 100%);
+  }
+
+  html.dark .bg-zone-ground {
+    background: linear-gradient(180deg, #1E3A1E 0%, #2A4A2A 100%);
+  }
+
+  html.dark .bg-zone-tarmac {
+    background: linear-gradient(180deg, #1E2A3A 0%, #1A2438 100%);
+    background-image: none;
+  }
+
+  html.dark .bg-zone-tarmac-soft {
+    background-color: #242438;
+    background-image: none;
+  }
+
+  /* Cartoon badge in dark mode */
+  html.dark .cartoon-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+    color: var(--primary-text);
+  }
+
+  /* Text label in dark mode */
+  html.dark .text-label {
+    background: rgba(255, 159, 28, 0.15);
+    border-color: rgba(255, 159, 28, 0.4);
+    color: #FF9F1C;
+  }
+
+  /* Clouds become ghostly at night */
+  html.dark .cartoon-clouds-container {
+    opacity: 0.3;
+  }
+
+  /* Sun hidden in dark mode */
+  html.dark .cartoon-sun {
+    display: none;
+  }
+
+  /* Grass becomes darker at night */
+  html.dark .grass-overlay svg path {
+    filter: brightness(0.5) saturate(0.7);
+  }
+
+  /* Mobile menu overlay in dark mode */
+  html.dark #mobile-menu .absolute.inset-0 {
+    background: rgba(27, 40, 56, 0.97) !important;
+  }
+
+  /* Glow border in dark mode */
+  html.dark .glow-border {
+    border-color: var(--border-color);
+  }
+
+  html.dark .glow-border:hover {
+    border-color: var(--accent-orange);
+    box-shadow: 4px 4px 0px var(--cartoon-shadow-colored);
+  }
+
+  /* Section divider in dark mode — slightly dimmed */
+  html.dark .section-divider {
+    opacity: 0.7;
+  }
 }
 
 @layer utilities {
@@ -660,8 +1073,22 @@
 
 /* ==============================================
    Reduced motion — respect user preferences
+   Disables ALL non-essential animations site-wide
    ============================================== */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+
   .motion-safe,
   .animate-glow-pulse,
   .animate-blink-green,
@@ -669,18 +1096,10 @@
   .animate-status-pulse-orange,
   .animate-scroll-bounce,
   .animate-marquee,
-  .animate-marquee-mobile {
+  .animate-marquee-mobile,
+  .float-rory,
+  .doodle-star {
     animation: none !important;
-  }
-
-  html {
-    scroll-behavior: auto !important;
-  }
-
-  *:not(:focus-visible) {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
   }
 
   :focus-visible {
@@ -688,5 +1107,37 @@
     outline-offset: 3px;
     border-radius: 8px;
     transition: outline-offset 0.1s ease !important;
+  }
+
+  /* Card and button hover transform overrides */
+  .card-cartoon:hover {
+    transform: none;
+  }
+
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .btn-ghost-dark:hover {
+    transform: none;
+  }
+
+  .btn-primary:active,
+  .btn-ghost:active,
+  .btn-ghost-dark:active {
+    transform: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Mobile full-width buttons — better touch targets
+   Buttons span full width on small screens for
+   easier tapping and consistent visual rhythm.
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .btn-primary,
+  .btn-ghost,
+  .btn-ghost-dark {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }

@@ -39,7 +39,7 @@ export default function MissionBoardPreview() {
   const displayedEvents = getSortedEvents(events);
 
   return (
-    <section className="section-padding bg-zone-cloud" aria-label="Active missions preview">
+    <section className="section-padding" aria-label="Active missions preview">
       <div className="container-site">
         {/* Section label */}
         <SectionLabel text="ACTIVE MISSIONS" showCursor className="mb-8" />

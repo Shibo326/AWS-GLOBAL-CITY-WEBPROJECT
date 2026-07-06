@@ -34,24 +34,15 @@ const benefits = [
 /**
  * EnlistSection — Recruitment CTA section with stamp-in headline,
  * benefit cards with stagger animation, and dual-action CTA strip.
- * Background uses bg-surface for a mission briefing room feel.
+ * Styled for the ground zone (warm cream background, dark text).
  */
 export default function EnlistSection() {
   return (
     <ScrollReveal>
       <section
-        className="relative section-padding bg-zone-ground"
+        className="relative section-padding"
         aria-label="Enlist as a Cloud Pilot"
       >
-        {/* Colorful gradient overlay at top */}
-        <div
-          className="absolute top-0 left-0 right-0 h-[200px] pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(34, 197, 94, 0.06) 0%, transparent 100%)',
-          }}
-        />
-
         <div className="container-site relative flex flex-col items-center text-center">
           {/* Top label */}
           <SectionLabel
@@ -60,22 +51,20 @@ export default function EnlistSection() {
             className="mb-6"
           />
 
-          {/* Decorative colorful dots */}
+          {/* Decorative dots */}
           <div className="mb-4 flex items-center gap-3" aria-hidden="true">
-            <div className="h-[2px] w-10 bg-gradient-to-r from-transparent to-accent-pink opacity-70" />
-            <div className="w-2.5 h-2.5 rounded-full bg-accent-orange" />
-            <div className="h-[2px] w-10 bg-gradient-to-l from-transparent to-accent-blue opacity-70" />
+            <div className="h-[2px] w-10 bg-gradient-to-r from-transparent to-[var(--border-color)]/30" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[var(--accent-orange)]" />
+            <div className="h-[2px] w-10 bg-gradient-to-l from-transparent to-[var(--border-color)]/30" />
           </div>
 
-          {/* Stamp-in headline */}
+          {/* Stamp-in headline — dark text with orange accent */}
           <StampIn>
             <h2
-              className="font-heading text-hero uppercase tracking-hero mb-4"
+              className="text-hero uppercase tracking-hero mb-4"
               style={{
-                background: 'linear-gradient(135deg, #FF9900 0%, #EC4899 50%, #A855F7 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                fontFamily: 'var(--font-heading)',
+                color: 'var(--primary-text)',
               }}
             >
               READY TO FLY?
@@ -84,7 +73,8 @@ export default function EnlistSection() {
 
           {/* Subheadline */}
           <motion.p
-            className="text-secondary-text text-base md:text-lg max-w-2xl mx-auto mb-12"
+            className="text-base md:text-lg max-w-2xl mx-auto mb-12"
+            style={{ color: 'var(--secondary-text)' }}
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -125,14 +115,20 @@ export default function EnlistSection() {
               </Button>
             </Link>
             <Link href="/about">
-              <Button variant="ghost" size="lg">
+              <Button
+                variant="ghost"
+                size="lg"
+              >
                 Learn More About the Club
               </Button>
             </Link>
           </div>
 
           {/* Small text */}
-          <p className="text-xs text-secondary-text text-center mt-4">
+          <p
+            className="text-xs text-center mt-4"
+            style={{ color: 'var(--secondary-text)' }}
+          >
             Open to all STI Global City students. Applications reviewed within
             48 hours.
           </p>

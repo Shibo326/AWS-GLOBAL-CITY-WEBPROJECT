@@ -11,26 +11,26 @@ interface BenefitCardProps {
 }
 
 /**
- * BenefitCard — Cartoon comic-panel card with thick border and offset shadow.
- * Bouncy hover lift with cartoon physics.
+ * BenefitCard — Cartoon card for enlistment benefits.
+ * Uses .card-cartoon class for consistent 2px border, 16px radius, white bg, 3px shadow, hover effects.
  */
 export function BenefitCard({ icon: Icon, title, description, index }: BenefitCardProps) {
   return (
     <motion.div
-      className="bg-card border-[3px] border-[#2D2D44] rounded-[24px] p-6 shadow-[4px_4px_0px_#2D2D44] transition-all duration-300 hover:-translate-y-3 hover:-translate-x-1 hover:shadow-[6px_8px_0px_#2D2D44] hover:rotate-[-0.5deg]"
+      className="card-cartoon p-6"
       variants={benefitCardVariants}
       custom={index}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
     >
-      <div className="w-12 h-12 rounded-2xl bg-[#FFF3E0] border-2 border-[#2D2D44] shadow-[2px_2px_0px_#2D2D44] flex items-center justify-center mb-4">
-        <Icon size={24} className="text-accent-orange" />
+      <div className="mb-3">
+        <Icon size={32} className="text-[var(--accent-orange)]" />
       </div>
-      <h3 className="font-display font-bold text-lg text-primary-text mb-2">
+      <h3 className="font-[family-name:var(--font-body)] font-bold text-lg text-[var(--primary-text)] mb-2">
         {title}
       </h3>
-      <p className="text-sm text-secondary-text font-medium">
+      <p className="font-[family-name:var(--font-body)] text-sm text-[var(--secondary-text)]">
         {description}
       </p>
     </motion.div>
